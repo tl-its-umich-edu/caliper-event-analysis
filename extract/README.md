@@ -63,10 +63,10 @@ ready to run.  The program accepts two command line options:
 
     Default: 1
 
-ℹ️ Note that `extract` currently uses a hard-coded query to extract events emitted
-from a specific application that includes the string "problemroulette" in the JSON.
-A future update will add an option to `extract` to allow specification of a
-different query. 
+> ℹ️ Note that `extract` currently uses a hard-coded query to extract events emitted
+> from a specific application that includes the string "problemroulette" in the JSON.
+> A future update will add an option to `extract` to allow specification of a
+> different query. 
 
 The output of `extract` will be one JSON object per line.  This is known
 as the [JSON Lines](http://jsonlines.org/) format.  This format makes further 
