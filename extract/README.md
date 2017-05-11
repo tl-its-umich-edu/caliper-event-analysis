@@ -1,4 +1,4 @@
-# caliper-event-analysis: Extract Events from LRS
+# caliper-event-analysis: Extract Events From the LRS' DB
 
 ## Open an SSH tunnel to the LRS' DB _(optional)_ 
 
@@ -46,27 +46,31 @@ a batch process.
 After the options above have been chosen, if any, `extract` should be 
 ready to run.  The program accepts two command line options:
 
-* **`-h <host>`_**
+* **`-h <host>`**
 
-    MongoDB host to query. 
+    MongoDB host to query. (Format: `hostName:portNum/dbName`)
     
-    (Format: `hostName:portNum/dbName`)
+    Default: `127.0.0.1:27017/test`
     
-    Default if not given: `127.0.0.1:27017/test`
-    
-    The default may be overridden by setting env. variable
+    The default comes from the `mongo` program.  It 
+        may be overridden by setting env. variable
         MONGODB_ADDRESS.  If a host is given using this option,
         it overrides any value in the env. variable.
 
-* **`-n <num_events>`_**
+* **`-n <num_events>`**
 
     Number of most recent events to extract.
 
     Default: 1
 
+ℹ️ Note that `extract` currently uses a hard-coded query to extract events emitted
+from a specific application that includes the string "problemroulette" in the JSON.
+A future update will add an option to `extract` to allow specification of a
+different query. 
+
 The output of `extract` will be one JSON object per line.  This is known
-as the [JSON Lines](http://jsonlines.org/) format.  It makes further 
-processing of the events with command line tools easier.  The common 
+as the [JSON Lines](http://jsonlines.org/) format.  This format makes further 
+processing of the events with command line tools easier.  The usual 
 filename extension for this format is `.jsonl`.
 
 ## Example
@@ -118,5 +122,5 @@ $ cat events.jsonl
 
 In this example, the `-n` option was used to specify that the five most recent events should
 be returned.  They were redirected to a file to show the use of the `.jsonl` filename
-extension.  Examination of the file with `cat` shows that each JSON object appears on a 
-line, with only a line break between them.
+extension.  Examination of the file with `cat` shows that each line contains only one JSON
+object, with only a line break between them.
