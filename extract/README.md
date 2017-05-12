@@ -6,19 +6,19 @@ If the LRS' MongoDB service is on a protected network (e.g., behind a
 firewall), use SSH to connect to its server and open a tunnel to the
 service to make it appear to be available locally.
 
-0. `cp tunnel-example.sh tunnel-.sh`
-0. Edit `tunnel-.sh`
-    0. Change `remote-user` to the username on the server.
-    0. Change `remote-host.example.org` to the hostname of the server.
-0. Run `tunnel-.sh` to set up the tunnel
-    0. Consider the requirements for connecting to the server
+1. `cp tunnel-example.sh tunnel-.sh`
+1. Edit `tunnel-.sh`
+    1. Change `remote-user` to the username on the server.
+    1. Change `remote-host.example.org` to the hostname of the server.
+1. Run `tunnel-.sh` to set up the tunnel
+    1. Consider the requirements for connecting to the server
         specified in the script before running it.
         (E.g., you may need to use a VPN.)
-    0. The tunnel will make the remote service appear to be local,
+    1. The tunnel will make the remote service appear to be local,
         responding to the address `127.0.0.1:27017/remote-db-name`.
-    0. The script displays verbose output to allow monitoring the
+    1. The script displays verbose output to allow monitoring the
         connection and to make it easy to close the tunnel later.
-    0. Since this script occupies a terminal, it's best to run the
+    1. Since this script occupies a terminal, it's best to run the
         following commands in another terminal.
         
 ## Set the LRS' DB address in the environment _(optional)_ 
@@ -29,14 +29,14 @@ the address in the `MONGODB_ADDRESS` environment variable.  This is
 especially true if `extract` will be run interactively rather than as
 a batch process.
 
-0. `cp env-example.sh env-.sh`
-0. Edit `env-.sh`
-    0. Change `remote-db-name` to the name of the LRS' MongoDB on the
+1. `cp env-example.sh env-.sh`
+1. Edit `env-.sh`
+    1. Change `remote-db-name` to the name of the LRS' MongoDB on the
         server.
-0. Run `source env-.sh` to set up the tunnel
-    0. Using the `source` command is required to set the environment
+1. Run `source env-.sh` to set up the tunnel
+    1. Using the `source` command is required to set the environment
         variable in the current shell.
-0. After the LRS' DB address is set in the environment, it's not
+1. After the LRS' DB address is set in the environment, it's not
     necessary to specify the address to the `extract` program on the
     command line.  However, if the address is given on the command line,
     it will override any value set in the environment.
