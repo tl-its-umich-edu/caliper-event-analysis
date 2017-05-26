@@ -13,7 +13,22 @@ service to make it appear to be available locally.
 1. Run `tunnel-.sh` to set up the tunnel
     1. Consider the requirements for connecting to the server
         specified in the script before running it.
-        (E.g., you may need to use a VPN.)
+        (E.g., you may need to use a VPN or other security features.)
+       1. VPN:  If you need to use a VPN to connect to the server, 
+          start the VPN client before running the script.
+       1. PEM authentication:  If you need to use PEM files to
+          authenticate to the server, put the files in an
+          appropriate, secure place that can be accessed by the
+          script.  Possible ways to use the PEM files:
+          1. Add the `-i` option to the script and give the path to
+            the PEM file as an argument.  See OpenSSH
+            [`-i` documentation](http://man.openbsd.org/ssh#i) 
+            for more information.
+          1. In your `~/.ssh/config` file, add a `Host` keyword with
+              a pattern to match the hostname and a `IdentityFile`
+              keyword with the path to the PEM file.  See OpenSSH
+              [`IdentityFile` documentation](http://man.openbsd.org/ssh_config#IdentityFile)
+              for more information.
     1. The tunnel will make the remote service appear to be local,
         responding to the address `127.0.0.1:27017/remote-db-name`.
     1. The script displays verbose output to allow monitoring the
