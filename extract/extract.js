@@ -16,7 +16,7 @@ db.event.find({
     }
 }).sort({
     _id: -1
-}).limit(numEvents).toArray().map(function(eventObject) {
+}).limit(numEvents).map(function(eventObject) {
     return JSON.stringify(JSON.parse(eventObject.raw),
         skipNullOrEmptyValue);
 }).forEach(function(eventJson) {
