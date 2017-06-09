@@ -1,4 +1,6 @@
+const REGEX_FLAG_IGNORE_CASE = 'i';
 var numEvents = numEvents || 1;
+var rawRegex = rawRegex || '.*';
 
 function skipNullOrEmptyValue(key, value) {
     return (
@@ -7,12 +9,9 @@ function skipNullOrEmptyValue(key, value) {
     ) ? undefined : value;
 }
 
-// The original find query used the same regex on the object property.
-// However, many PR events don't have "problemroulette" in that property.
-
 db.event.find({
     raw: {
-        $regex: /problemroulette/
+        $regex: new RegExp(rawRegex, REGEX_FLAG_IGNORE_CASE)
     }
 }).sort({
     _id: -1
