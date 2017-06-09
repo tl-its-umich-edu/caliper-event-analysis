@@ -91,3 +91,6 @@ ENV/
 # Filenames ending with "-" and optional extension
 *-
 *-.*
+
+# Local directory for temporary files
+/tmp/
