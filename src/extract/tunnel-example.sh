@@ -7,4 +7,7 @@
 ## DO NOT COMMIT YOUR COPY OF THIS FILE TO THE REPOSITORY
 ##
 
+# Note: This is the basic command needed for many environments.
+# See the "README.md" file for information about other helpful, additional options.
+
 ssh -Nv -L127.0.0.1:27017:0.0.0.0:27017 remote-user@remote-host.example.org

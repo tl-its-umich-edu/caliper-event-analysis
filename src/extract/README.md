@@ -13,7 +13,22 @@ service to make it appear to be available locally.
 1. Run `tunnel-.sh` to set up the tunnel
     1. Consider the requirements for connecting to the server
         specified in the script before running it.
-        (E.g., you may need to use a VPN.)
+        (E.g., you may need to use a VPN or other security features.)
+       1. VPN:  If you need to use a VPN to connect to the server, 
+          start the VPN client before running the script.
+       1. PEM authentication:  If you need to use PEM files to
+          authenticate to the server, put the files in an
+          appropriate, secure place that can be accessed by the
+          script.  Possible ways to use the PEM files:
+          1. Add the `-i` option to the script and give the path to
+            the PEM file as an argument.  See OpenSSH
+            [`-i` documentation](http://man.openbsd.org/ssh#i) 
+            for more information.
+          1. In your `~/.ssh/config` file, add a `Host` keyword with
+              a pattern to match the hostname and a `IdentityFile`
+              keyword with the path to the PEM file.  See OpenSSH
+              [`IdentityFile` documentation](http://man.openbsd.org/ssh_config#IdentityFile)
+              for more information.
     1. The tunnel will make the remote service appear to be local,
         responding to the address `127.0.0.1:27017/remote-db-name`.
     1. The script displays verbose output to allow monitoring the
@@ -46,22 +61,16 @@ a batch process.
 After the options above have been chosen, if any, `extract` should be 
 ready to run.  The program accepts two command line options:
 
-* **`-h <host>`**
+* **`--db` _`MONGODB_ADDRESS`_**
 
-    MongoDB host to query. (Format: `hostName:portNum/dbName`)
-    
-    Default: `127.0.0.1:27017/test`
-    
-    The default comes from the `mongo` program.  It 
-        may be overridden by setting env. variable
-        MONGODB_ADDRESS.  If a host is given using this option,
-        it overrides any value in the env. variable.
+    MongoDB host to query, as "hostName:portNum/dbName".
+    The default may be overridden by setting env. variable
+    MONGODB_ADDRESS. Default: (mongo shell CLI default,
+    usually "127.0.0.1:27017/test").
 
-* **`-n <num_events>`**
+* **`--num` _`NUM_EVENTS`_**
 
-    Number of most recent events to extract.
-
-    Default: 1
+    Number of most recent events to extract. Default: 1
 
 > ℹ️ Note that `extract` currently uses a hard-coded query to extract events emitted
 > from a specific application that includes the string "problemroulette" in the JSON.
@@ -111,7 +120,7 @@ Again in the second terminal, since the `env-.sh` script has already set the DB 
 the environment, there's no need to do it again before another run of `extract`:
 
 ```
-$ ./extract -n 5 > events.jsonl
+$ ./extract --num 5 > events.jsonl
 $ cat events.jsonl
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:a438f8ac-1da3-4d48-8c86-94a1b387e0f6","type":"SessionEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"LoggedOut","object":{"id":"https://example.edu","type":"SoftwareApplication","version":"v2"},"eventTime":"2016-11-15T11:05:00.000Z","edApp":"https://problemroulette.example.edu","session":{"id":"https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","user":"https://example.edu/users/554433","dateCreated":"2016-11-15T10:00:00.000Z","startedAtTime":"2016-11-15T10:00:00.000Z","endedAtTime":"2016-11-15T11:05:00.000Z","duration":"PT3000S"}}
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:3bdab9e6-11cd-4a0f-9d09-8e363994176b","type":"AnnotationEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"Shared","object":{"id":"https://example.com/#/texts/imscaliperimplguide","type":"Document","name":"IMS Caliper Implementation Guide","version":"1.1"},"generated":{"id":"https://example.com/users/554433/texts/imscaliperimplguide/shares/1","type":"SharedAnnotation","annotator":"https://example.edu/users/554433","annotated":"https://example.com/#/texts/imscaliperimplguide","withAgents":[{"id":"https://example.edu/users/657585","type":"Person"},{"id":"https://example.edu/users/667788","type":"Person"}],"dateCreated":"2016-11-15T10:15:00.000Z"},"eventTime":"2016-11-15T10:15:00.000Z","edApp":{"id":"https://problemroulette.example.com/reader","type":"SoftwareApplication","name":"ePub Reader","version":"1.2.3"},"group":{"id":"https://example.edu/terms/201601/courses/7/sections/1","type":"CourseSection","courseNumber":"CPS 435-01","academicSession":"Fall 2016"},"membership":{"id":"https://example.edu/terms/201601/courses/7/sections/1/rosters/1","type":"Membership","member":"https://example.edu/users/554433","organization":"https://example.edu/terms/201601/courses/7/sections/1","roles":["Learner"],"status":"Active","dateCreated":"2016-08-01T06:00:00.000Z"},"session":{"id":"https://example.com/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","startedAtTime":"2016-11-15T10:00:00.000Z"}}
@@ -120,7 +129,7 @@ $ cat events.jsonl
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:fcd495d0-3740-4298-9bec-1154571dc211","type":"SessionEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"LoggedIn","object":{"id":"https://example.edu","type":"SoftwareApplication","version":"v2"},"eventTime":"2016-11-15T10:15:00.000Z","edApp":"https://problemroulette.example.edu","session":{"id":"https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","user":"https://example.edu/users/554433","dateCreated":"2016-11-15T10:00:00.000Z","startedAtTime":"2016-11-15T10:00:00.000Z"}}
 ```
 
-In this example, the `-n` option was used to specify that the five most recent events should
+In this example, the `--num` option was used to specify that the five most recent events should
 be returned.  They were redirected to a file to show the use of the `.jsonl` filename
 extension.  Examination of the file with `cat` shows that each line contains only one JSON
 object, with only a line break between them.
