@@ -1,9 +1,4 @@
 import sys
-if sys.version_info < (3, 6):
-    print('Sorry, need Python version 3.6+')
-    sys.exit(1)
-
-
 import argparse
 import json
 import pandas as pd
@@ -52,45 +47,55 @@ def ilf_predict(data, contamination, use_log):
     data['IsInlier'] = ilf.predict(use_df) # Unsupervised learning and predicting outliers
 
 
-argParser = argparse.ArgumentParser(
-    description="Decide which problem-dealing events are considered outliers."
-)
-argParser.add_argument(
-    'file',
-    type=str,
-    metavar='FILE',
-    help='JSON file for processing'
-)
-argParser.add_argument(
-    '--perc',
-    type=float,
-    dest='contamination',
-    default=0.05,
-    help='''Percentage of outliers in data.
-            Default: %(default)s'''
-)
-argParser.add_argument(
-    '--uselog',
-    type=bool,
-    dest='use_log',
-    default=True,
-    help='''Whether or not use log value of Attempt Duration.
-            Default: %(default)s'''
-)
-args = argParser.parse_args()
+def main():
 
+    if sys.version_info < (3, 6):
+        print('Sorry, need Python version 3.6+')
+        sys.exit(1)
 
-def __main__(f_name=None):
-    if f_name == None or f_name == []:
+    argParser = argparse.ArgumentParser(
+        description="Decide which problem-dealing events are considered outliers."
+    )
+    argParser.add_argument(
+        'file',
+        type=str,
+        metavar='FILE',
+        default='',
+        nargs='?',
+        help='JSON file for processing'
+    )
+    argParser.add_argument(
+        '--perc',
+        type=float,
+        dest='contamination',
+        default=0.05,
+        help='''Percentage of outliers in data.
+                Default: %(default)s'''
+    )
+    argParser.add_argument(
+        '--uselog',
+        type=bool,
+        dest='use_log',
+        default=True,
+        help='''Whether or not use log value of Attempt Duration.
+                Default: %(default)s'''
+    )
+    args = argParser.parse_args()
+
+    if args.file == '':
         print("No file name provided.")
         sys.exit(1)
+
     try:
-        data = read_file(f_name)
+        data = read_file(args.file)
         ilf_predict(data, args.contamination, args.use_log)
         data.to_csv('outlier_detect.csv', columns=['OpenlrsSourceId', 'IsInlier'], index=False)
     except:
         print("Sorry, cannot read this file.")
+        sys.exit(1)
+
     print("Please check your working directory for output file 'outlier_detect.csv'.")
 
+
 if __name__ == "__main__":
-    __main__(args.file)
+    main()
