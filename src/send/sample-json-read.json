@@ -1,0 +1,341 @@
+{
+  "sensor": "ProblemRoulette_Prod_SensorId",
+  "sendTime": "2016-10-18T19:38:13.000Z",
+  "data": [
+    {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent",
+      "actor": {
+        "@id": "https://mcommunity.umich.edu/#profile:xxx",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
+        "name": "xxx",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null
+      },
+      "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed",
+      "object": {
+        "@id": "https://docs.google.com/document/d/1Pk-Uq8kX1s1zcG1IfV5aGrw3O1w98S1nI3spv7GmSho/pub",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItem",
+        "name": "PB9_056",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null,
+        "objectType": [],
+        "alignedLearningObjective": [],
+        "keywords": [],
+        "isPartOf": {
+          "@id": "https://problemroulette.lsa.umich.edu/courses/10/topics/213",
+          "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+          "@type": "http://purl.imsglobal.org/caliper/v1/Assessment",
+          "name": "Bonding",
+          "description": null,
+          "extensions": {},
+          "dateCreated": null,
+          "dateModified": null,
+          "objectType": [],
+          "alignedLearningObjective": [],
+          "keywords": [],
+          "isPartOf": null,
+          "datePublished": null,
+          "version": null,
+          "dateToActivate": null,
+          "dateToShow": null,
+          "dateToStartOn": null,
+          "dateToSubmit": null,
+          "maxAttempts": null,
+          "maxSubmits": null,
+          "maxScore": null
+        },
+        "datePublished": null,
+        "version": null,
+        "dateToActivate": null,
+        "dateToShow": null,
+        "dateToStartOn": null,
+        "dateToSubmit": null,
+        "maxAttempts": null,
+        "maxSubmits": null,
+        "maxScore": null,
+        "isTimeDependent": null
+      },
+      "target": null,
+      "generated": {
+        "@id": "https://docs.google.com/document/d/1Pk-Uq8kX1s1zcG1IfV5aGrw3O1w98S1nI3spv7GmSho/pub/response",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/MultipleChoiceResponse",
+        "name": null,
+        "description": null,
+        "extensions": {
+          "isStudentAnswerCorrect": "false",
+          "correctAnswer": "3"
+        },
+        "dateCreated": null,
+        "dateModified": null,
+        "actor": null,
+        "assignable": null,
+        "attempt": {
+          "@id": "https://docs.google.com/document/d/1Pk-Uq8kX1s1zcG1IfV5aGrw3O1w98S1nI3spv7GmSho/pub/attempt",
+          "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+          "@type": "http://purl.imsglobal.org/caliper/v1/Attempt",
+          "name": null,
+          "description": null,
+          "extensions": {},
+          "dateCreated": null,
+          "dateModified": null,
+          "assignable": null,
+          "actor": null,
+          "count": 1,
+          "startedAtTime": "2016-10-18T19:37:42.000Z",
+          "endedAtTime": "2016-10-18T19:38:12.000Z",
+          "duration": "PT30S"
+        },
+        "duration": null,
+        "endedAtTime": null,
+        "startedAtTime": null,
+        "value": "1"
+      },
+      "eventTime": "2016-10-18T19:38:13.065Z",
+      "edApp": {
+        "@id": "https://problemroulette.lsa.umich.edu/",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
+        "name": null,
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null
+      },
+      "group": {
+        "@id": "https://problemroulette.lsa.umich.edu/courses/10",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
+        "name": "Chemistry 130",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null,
+        "courseNumber": null,
+        "academicSession": null,
+        "subOrganizationOf": null
+      },
+      "membership": null,
+      "federatedSession": null
+    }
+  ]
+}
+BREAK
+{
+  "sensor": "ProblemRoulette_Prod_SensorId",
+  "sendTime": "2016-10-18T19:38:13.000Z",
+  "data": [
+    {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent",
+      "actor": {
+        "@id": "https://mcommunity.umich.edu/#profile:yyy",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
+        "name": "yyy",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null
+      },
+      "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed",
+      "object": {
+        "@id": "https://docs.google.com/document/d/19r0rJXAPNWmMflM26lS-hPnzV0Zu1MEJogSlsE_bXnk/pub",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItem",
+        "name": "PB1_080",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null,
+        "objectType": [],
+        "alignedLearningObjective": [],
+        "keywords": [],
+        "isPartOf": {
+          "@id": "https://problemroulette.lsa.umich.edu/courses/10/topics/210",
+          "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+          "@type": "http://purl.imsglobal.org/caliper/v1/Assessment",
+          "name": "Measurements and Calculations",
+          "description": null,
+          "extensions": {},
+          "dateCreated": null,
+          "dateModified": null,
+          "objectType": [],
+          "alignedLearningObjective": [],
+          "keywords": [],
+          "isPartOf": null,
+          "datePublished": null,
+          "version": null,
+          "dateToActivate": null,
+          "dateToShow": null,
+          "dateToStartOn": null,
+          "dateToSubmit": null,
+          "maxAttempts": null,
+          "maxSubmits": null,
+          "maxScore": null
+        },
+        "datePublished": null,
+        "version": null,
+        "dateToActivate": null,
+        "dateToShow": null,
+        "dateToStartOn": null,
+        "dateToSubmit": null,
+        "maxAttempts": null,
+        "maxSubmits": null,
+        "maxScore": null,
+        "isTimeDependent": null
+      },
+      "target": null,
+      "generated": {
+        "@id": "https://docs.google.com/document/d/19r0rJXAPNWmMflM26lS-hPnzV0Zu1MEJogSlsE_bXnk/pub/response",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/MultipleChoiceResponse",
+        "name": null,
+        "description": null,
+        "extensions": {
+          "isStudentAnswerCorrect": "true",
+          "correctAnswer": "5"
+        },
+        "dateCreated": null,
+        "dateModified": null,
+        "actor": null,
+        "assignable": null,
+        "attempt": {
+          "@id": "https://docs.google.com/document/d/19r0rJXAPNWmMflM26lS-hPnzV0Zu1MEJogSlsE_bXnk/pub/attempt",
+          "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+          "@type": "http://purl.imsglobal.org/caliper/v1/Attempt",
+          "name": null,
+          "description": null,
+          "extensions": {},
+          "dateCreated": null,
+          "dateModified": null,
+          "assignable": null,
+          "actor": null,
+          "count": 1,
+          "startedAtTime": "2016-10-18T19:37:26.000Z",
+          "endedAtTime": "2016-10-18T19:38:13.000Z",
+          "duration": "PT47S"
+        },
+        "duration": null,
+        "endedAtTime": null,
+        "startedAtTime": null,
+        "value": "5"
+      },
+      "eventTime": "2016-10-18T19:38:13.715Z",
+      "edApp": {
+        "@id": "https://problemroulette.lsa.umich.edu/",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
+        "name": null,
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null
+      },
+      "group": {
+        "@id": "https://problemroulette.lsa.umich.edu/courses/10",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
+        "name": "Chemistry 130",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null,
+        "courseNumber": null,
+        "academicSession": null,
+        "subOrganizationOf": null
+      },
+      "membership": null,
+      "federatedSession": null
+    }
+  ]
+}
+BREAK
+{
+  "sensor": "ProblemRoulette_Prod_SensorId",
+  "sendTime": "2016-10-19T02:06:25.000Z",
+  "data": [
+    {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@type": "http://purl.imsglobal.org/caliper/v1/NavigationEvent",
+      "actor": {
+        "@id": "https://mcommunity.umich.edu/#profile:zzz",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
+        "name": "zzz",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null
+      },
+      "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#NavigatedTo",
+      "object": {
+        "@id": "https://problemroulette.lsa.umich.edu/views/selections/courses/10/topics",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/WebPage",
+        "name": "Selections: Chemistry 130 Topics",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null,
+        "objectType": [],
+        "alignedLearningObjective": [],
+        "keywords": [],
+        "isPartOf": null,
+        "datePublished": null,
+        "version": null
+      },
+      "target": null,
+      "generated": null,
+      "eventTime": "2016-10-19T02:06:25.068Z",
+      "edApp": {
+        "@id": "https://problemroulette.lsa.umich.edu/",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
+        "name": null,
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null
+      },
+      "group": {
+        "@id": "https://problemroulette.lsa.umich.edu/courses/10",
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@type": "http://purl.imsglobal.org/caliper/v1/lis/CourseOffering",
+        "name": "Chemistry 130",
+        "description": null,
+        "extensions": {},
+        "dateCreated": null,
+        "dateModified": null,
+        "courseNumber": null,
+        "academicSession": null,
+        "subOrganizationOf": null
+      },
+      "membership": null,
+      "federatedSession": null,
+      "navigatedFrom": null
+    }
+  ]
+}
+BREAK
+{"sensor":"ProblemRoulette_Prod_SensorId","sendTime":"2016-12-15T20:38:51.436Z","data":[{"@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent","actor":{"@id":"https://mcommunity.umich.edu/#profile:kkk","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/Person","name":"kkk","description":null,"extensions":{},"dateCreated":null,"dateModified":null},"action":"http://purl.imsglobal.org/vocab/caliper/v1/action#Skipped","object":{"@id":"https://docs.google.com/document/d/1w9ThRFIls0O0cn8yp5iff_3MweRl31Ogjhp081UxGTI/pub","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItem","name":"Stats 250 Exam 1 Sp13 Problem 1A","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":{"@id":"https://problemroulette.lsa.umich.edu/courses/9/topics/39","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Assessment","name":"4. Random Variables","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":null,"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null},"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null,"isTimeDependent":null},"target":null,"generated":{"@id":"https://docs.google.com/document/d/1w9ThRFIls0O0cn8yp5iff_3MweRl31Ogjhp081UxGTI/pub/response","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/MultipleChoiceResponse","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null,"actor":null,"assignable":null,"attempt":{"@id":"https://docs.google.com/document/d/1w9ThRFIls0O0cn8yp5iff_3MweRl31Ogjhp081UxGTI/pub/attempt","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Attempt","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null,"assignable":null,"actor":null,"count":1,"startedAtTime":"2016-12-15T20:38:50.000Z","endedAtTime":"2016-12-15T20:38:51.000Z","duration":"PT1S"},"duration":null,"endedAtTime":null,"startedAtTime":null,"value":null},"eventTime":"2016-12-15T20:38:51.433Z","edApp":{"@id":"https://problemroulette.lsa.umich.edu/","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/SoftwareApplication","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null},"group":{"@id":"https://problemroulette.lsa.umich.edu/courses/9","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/CourseOffering","name":"Statistics 250","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"courseNumber":null,"academicSession":null,"subOrganizationOf":null},"membership":null,"federatedSession":null}]}
+BREAK
+{"sensor":"ProblemRoulette_Prod_SensorId","sendTime":"2016-12-15T20:38:51.523Z","data":[{"@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent","actor":{"@id":"https://mcommunity.umich.edu/#profile:kkk","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/Person","name":"kkk","description":null,"extensions":{},"dateCreated":null,"dateModified":null},"action":"http://purl.imsglobal.org/vocab/caliper/v1/action#Started","object":{"@id":"https://docs.google.com/document/d/17MS1RI1syDCKIeS7DwXBnHEPfNEgrP0BrVTZf9S553Q/pub","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItem","name":"Stats 250 Final Exam W13 Problem 11B","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":{"@id":"https://problemroulette.lsa.umich.edu/courses/9/topics/39","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Assessment","name":"4. Random Variables","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":null,"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null},"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null,"isTimeDependent":null},"target":null,"generated":null,"eventTime":"2016-12-15T20:38:51.520Z","edApp":{"@id":"https://problemroulette.lsa.umich.edu/","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/SoftwareApplication","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null},"group":{"@id":"https://problemroulette.lsa.umich.edu/courses/9","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/CourseOffering","name":"Statistics 250","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"courseNumber":null,"academicSession":null,"subOrganizationOf":null},"membership":null,"federatedSession":null}]}
+BREAK
+{"sensor":"ProblemRoulette_Prod_SensorId","sendTime":"2016-12-15T20:38:52.202Z","data":[{"@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent","actor":{"@id":"https://mcommunity.umich.edu/#profile:uuu","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/Person","name":"uuu","description":null,"extensions":{},"dateCreated":null,"dateModified":null},"action":"http://purl.imsglobal.org/vocab/caliper/v1/action#Started","object":{"@id":"https://docs.google.com/document/d/1W4pDiLw3oj3nCefdAK2Ag8FNvqd1I2YLmdZkU6oWGaY/pub","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItem","name":"Stats 250 Final Exam W13 Problem 10A","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":{"@id":"https://problemroulette.lsa.umich.edu/courses/9/topics/37","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Assessment","name":"2. Sampling, Studies, Experiments","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":null,"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null},"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null,"isTimeDependent":null},"target":null,"generated":null,"eventTime":"2016-12-15T20:38:52.199Z","edApp":{"@id":"https://problemroulette.lsa.umich.edu/","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/SoftwareApplication","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null},"group":{"@id":"https://problemroulette.lsa.umich.edu/courses/9","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/CourseOffering","name":"Statistics 250","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"courseNumber":null,"academicSession":null,"subOrganizationOf":null},"membership":null,"federatedSession":null}]}
+BREAK
+{"sensor":"ProblemRoulette_Prod_SensorId","sendTime":"2016-12-15T20:38:52.395Z","data":[{"@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent","actor":{"@id":"https://mcommunity.umich.edu/#profile:uuu","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/Person","name":"uuu","description":null,"extensions":{},"dateCreated":null,"dateModified":null},"action":"http://purl.imsglobal.org/vocab/caliper/v1/action#Started","object":{"@id":"https://docs.google.com/document/d/1yUBvOeIVhS6tCuQBmCwNkj5lU_ExvOx9ZoscJVHGf1A/pub","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItem","name":"Stats 250 Final Exam W13 Problem 4F","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":{"@id":"https://problemroulette.lsa.umich.edu/courses/9/topics/46","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Assessment","name":"11. Regression","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":null,"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null},"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null,"isTimeDependent":null},"target":null,"generated":null,"eventTime":"2016-12-15T20:38:52.392Z","edApp":{"@id":"https://problemroulette.lsa.umich.edu/","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/SoftwareApplication","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null},"group":{"@id":"https://problemroulette.lsa.umich.edu/courses/9","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/CourseOffering","name":"Statistics 250","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"courseNumber":null,"academicSession":null,"subOrganizationOf":null},"membership":null,"federatedSession":null}]}
+BREAK
+{"sensor":"ProblemRoulette_Prod_SensorId","sendTime":"2016-12-15T20:38:52.768Z","data":[{"@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent","actor":{"@id":"https://mcommunity.umich.edu/#profile:kkk","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/Person","name":"kkk","description":null,"extensions":{},"dateCreated":null,"dateModified":null},"action":"http://purl.imsglobal.org/vocab/caliper/v1/action#Skipped","object":{"@id":"https://docs.google.com/document/d/17MS1RI1syDCKIeS7DwXBnHEPfNEgrP0BrVTZf9S553Q/pub","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItem","name":"Stats 250 Final Exam W13 Problem 11B","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":{"@id":"https://problemroulette.lsa.umich.edu/courses/9/topics/39","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Assessment","name":"4. Random Variables","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":null,"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null},"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null,"isTimeDependent":null},"target":null,"generated":{"@id":"https://docs.google.com/document/d/17MS1RI1syDCKIeS7DwXBnHEPfNEgrP0BrVTZf9S553Q/pub/response","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/MultipleChoiceResponse","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null,"actor":null,"assignable":null,"attempt":{"@id":"https://docs.google.com/document/d/17MS1RI1syDCKIeS7DwXBnHEPfNEgrP0BrVTZf9S553Q/pub/attempt","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Attempt","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null,"assignable":null,"actor":null,"count":1,"startedAtTime":"2016-12-15T20:38:51.000Z","endedAtTime":"2016-12-15T20:38:52.000Z","duration":"PT1S"},"duration":null,"endedAtTime":null,"startedAtTime":null,"value":null},"eventTime":"2016-12-15T20:38:52.765Z","edApp":{"@id":"https://problemroulette.lsa.umich.edu/","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/SoftwareApplication","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null},"group":{"@id":"https://problemroulette.lsa.umich.edu/courses/9","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/CourseOffering","name":"Statistics 250","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"courseNumber":null,"academicSession":null,"subOrganizationOf":null},"membership":null,"federatedSession":null}]}
+BREAK
+{"sensor":"ProblemRoulette_Prod_SensorId","sendTime":"2016-12-15T20:38:52.861Z","data":[{"@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent","actor":{"@id":"https://mcommunity.umich.edu/#profile:kkk","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/Person","name":"kkk","description":null,"extensions":{},"dateCreated":null,"dateModified":null},"action":"http://purl.imsglobal.org/vocab/caliper/v1/action#Started","object":{"@id":"https://docs.google.com/document/d/1QAYKOX1CJ6MDFxpLxvAMpKCSYKeyZEHBHADmkvgnsXo/pub","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItem","name":"Stats 250 Exam 1 F12 Problem 6B","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":{"@id":"https://problemroulette.lsa.umich.edu/courses/9/topics/39","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/Assessment","name":"4. Random Variables","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":null,"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null},"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null,"isTimeDependent":null},"target":null,"generated":null,"eventTime":"2016-12-15T20:38:52.859Z","edApp":{"@id":"https://problemroulette.lsa.umich.edu/","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/SoftwareApplication","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null},"group":{"@id":"https://problemroulette.lsa.umich.edu/courses/9","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/CourseOffering","name":"Statistics 250","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"courseNumber":null,"academicSession":null,"subOrganizationOf":null},"membership":null,"federatedSession":null}]}
+BREAK
+{"sensor":"ProblemRoulette_Prod_SensorId","sendTime":"2016-12-15T20:38:53.576Z","data":[{"@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AnnotationEvent","actor":{"@id":"https://mcommunity.umich.edu/#profile:ggg","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/Person","name":"ggg","description":null,"extensions":{},"dateCreated":null,"dateModified":null},"action":"http://purl.imsglobal.org/vocab/caliper/v1/action#Ranked","object":{"@id":"https://docs.google.com/document/d/17FIVIVrgc1ium5Z3HmKomE2IxlsvqGOKJjpJ-9dCA9g/pub","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/AssessmentItem","name":"Stats 250 Exam 1 Sp13 Problem 1B","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"objectType":[],"alignedLearningObjective":[],"keywords":[],"isPartOf":null,"datePublished":null,"version":null,"dateToActivate":null,"dateToShow":null,"dateToStartOn":null,"dateToSubmit":null,"maxAttempts":null,"maxSubmits":null,"maxScore":null,"isTimeDependent":null},"target":null,"generated":{"@id":"https://docs.google.com/document/d/17FIVIVrgc1ium5Z3HmKomE2IxlsvqGOKJjpJ-9dCA9g/pub/response","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/MultipleChoiceResponse","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null,"actor":null,"assignable":null,"attempt":null,"duration":null,"endedAtTime":null,"startedAtTime":null,"value":"5"},"eventTime":"2016-12-15T20:38:53.572Z","edApp":{"@id":"https://problemroulette.lsa.umich.edu/","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/SoftwareApplication","name":null,"description":null,"extensions":{},"dateCreated":null,"dateModified":null},"group":{"@id":"https://problemroulette.lsa.umich.edu/courses/9","@context":"http://purl.imsglobal.org/ctx/caliper/v1/Context","@type":"http://purl.imsglobal.org/caliper/v1/lis/CourseOffering","name":"Statistics 250","description":null,"extensions":{},"dateCreated":null,"dateModified":null,"courseNumber":null,"academicSession":null,"subOrganizationOf":null},"membership":null,"federatedSession":null}]}
+BREAK
