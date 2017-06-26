@@ -6,7 +6,7 @@ from math import log
 from sklearn.ensemble import IsolationForest
 
 
-def read_file(f_name):
+def parse_file_to_dataframe(f_name):
     # read from json file and get pandas data frame
     events = []
     f = open(f_name, 'r')
@@ -29,16 +29,11 @@ def read_file(f_name):
         events.append([id, is_complete, is_correct, attempt_count, attempt_duration])
     return pd.DataFrame(events, columns=['OpenlrsSourceId', 'IsComplete', 'IsCorrect', 'AttemptCount', 'AttemptDuration'])
 
-def cal_log(x):
-    if x == 0:
-        return 0
-    else:
-        return log(x)
-
 def use_log_value(data):
-    data['AttemptDuration'] = list(map(cal_log, data['AttemptDuration']))
+    data['AttemptDuration'] = map(lambda x: -1 if x == 0 else log(x), data['AttemptDuration'])
 
-def ilf_predict(data, contamination, use_log):
+def ilf_outlier_detect(data, contamination, use_log):
+    # generate column "IsInlier" as result of detection
     if use_log:
         use_log_value(data)
     ilf = IsolationForest(contamination=contamination) # Consider 5% of the data as "outliers" if not specified
@@ -50,19 +45,28 @@ def ilf_predict(data, contamination, use_log):
 def main():
 
     if sys.version_info < (3, 6):
-        print('Sorry, need Python version 3.6+')
+        print('Python version 3.6+ is required.')
         sys.exit(1)
 
     argParser = argparse.ArgumentParser(
         description="Decide which problem-dealing events are considered outliers."
     )
     argParser.add_argument(
-        'file',
+        'input_file',
         type=str,
-        metavar='FILE',
+        metavar='INPUT_FILE',
         default='',
         nargs='?',
-        help='JSON file for processing'
+        help='''JSON file for processing.'''
+    )
+    argParser.add_argument(
+        'output_file',
+        type=str,
+        metavar='OUTPUT_FILE',
+        default='',
+        nargs='?',
+        help='''Output csv file.
+                Default: %(default)s.'''
     )
     argParser.add_argument(
         '--perc',
@@ -70,31 +74,40 @@ def main():
         dest='contamination',
         default=0.05,
         help='''Percentage of outliers in data.
-                Default: %(default)s'''
+                Default: %(default)s.'''
     )
     argParser.add_argument(
         '--uselog',
-        type=bool,
+        action='store_true',
         dest='use_log',
-        default=True,
-        help='''Whether or not use log value of Attempt Duration.
-                Default: %(default)s'''
+        default=False,
+        help='''Use log value of AttemptDuration.'''
     )
     args = argParser.parse_args()
 
-    if args.file == '':
-        print("No file name provided.")
+    if args.input_file == '':
+        print("No input file provided.")
         sys.exit(1)
+
+    # if no output file name provided, redirect the output to stdout;
+    if args.output_file == '':
+        path_or_buf = sys.stdout
+        msg = ''
+    else:
+        path_or_buf = args.output_file
+        msg = "Please check your working directory for output file."
 
     try:
-        data = read_file(args.file)
-        ilf_predict(data, args.contamination, args.use_log)
-        data.to_csv('outlier_detect.csv', columns=['OpenlrsSourceId', 'IsInlier'], index=False)
-    except:
-        print("Sorry, cannot read this file.")
+        data = parse_file_to_dataframe(args.input_file)
+        ilf_outlier_detect(data, args.contamination, args.use_log)
+        data.to_csv(path_or_buf=path_or_buf, columns=['OpenlrsSourceId', 'IsInlier'], index=False)
+    except Exception as ex:
+        print("An error has occurred:")
+        print(ex)
         sys.exit(1)
 
-    print("Please check your working directory for output file 'outlier_detect.csv'.")
+    if msg:
+        print(msg)
 
 
 if __name__ == "__main__":
