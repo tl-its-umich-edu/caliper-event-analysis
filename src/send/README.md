@@ -8,7 +8,7 @@ leads to adding a new line character when you do a extract. so care must be take
 ### Requirements 
    1. works with Python 2.7.10 version
    1. pip to download modules
-   1. need `request`, `json` module
+   1. To install the required modules for the utility do `pip install -r requirements.txt`
 
 ### Running the script steps:
 
@@ -18,10 +18,12 @@ leads to adding a new line character when you do a extract. so care must be take
     1. TOKEN =basic auth token
     1. url = OpenLRS end point
     
-1. run the script as `python send_caliper_events.py`
+1. run the script as Daemon process  `nohup python send_caliper_events.py > output.log &`
 
 
 This is s bare minimum script to send event data to LRS, Work need to be done taking the token/url from the Properties file and implement proper logging
+
+Note: Make sure the caliper events file has no new line or any sort of delimiters at the end of the file.
 
       
  

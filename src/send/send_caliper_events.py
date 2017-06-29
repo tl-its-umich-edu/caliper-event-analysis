@@ -1,10 +1,10 @@
 import requests
-import fileinput
 import json
 import time
+import logging
 
 
-def api_handler(data):
+def api_handler(data,sess):
     AUTHORIZATION = 'Authorization'
     BASIC = 'Basic '
     MIME_TYPE_JSON = 'application/json'
@@ -12,7 +12,7 @@ def api_handler(data):
     headers = {CONTENT_TYPE: MIME_TYPE_JSON, AUTHORIZATION: BASIC + TOKEN}
     response = None
     try:
-        response = requests.post(url, data=data, headers=headers)
+        response = sess.post(url, data=data, headers=headers)
     except (requests.exceptions.RequestException, Exception) as exception:
         failure_resp.write("Connection to LRS failed %s\n" % exception)
 
@@ -20,6 +20,7 @@ def api_handler(data):
 
 
 print ("Start Of Script")
+logging.basicConfig(level=logging.INFO)
 
 TOKEN = 'xxxx'
 url = 'https://xxxx.org'
@@ -38,9 +39,10 @@ fileContent = caliper_events.read()
 # TODO take delimiter between event data from command line, for this instance of the script assumes it to be 'BREAK'
 events = fileContent.split("BREAK\n")
 start = time.time()
+session = requests.session()
 for event in events:
     events_count += 1
-    res = api_handler(event)
+    res = api_handler(event,session)
     if res is None:
         failed_events.write("%sBREAK\n" % event)
         continue
