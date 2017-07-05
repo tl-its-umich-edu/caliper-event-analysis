@@ -70,7 +70,9 @@ ready to run.  The program accepts two command line options:
 
 * **`--num` _`NUM_EVENTS`_**
 
-    Number of most recent events to extract. Default: 1
+    Maximum limit of the number of the most recent events to extract.  Specify a
+    limit of 0 to get all events (**_use with caution!_**).
+    Default: 1
 
 * **`--regex` _`REGEX`_**
 

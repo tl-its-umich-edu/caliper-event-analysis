@@ -1,6 +1,6 @@
 const REGEX_FLAG_IGNORE_CASE = 'i';
-var numEvents = numEvents || 1;
-var rawRegex = rawRegex || '.*';
+var numEvents = (typeof numEvents !== 'undefined') ? numEvents : 1;
+var rawRegex = (typeof rawRegex !== 'undefined') ? rawRegex : '.*';
 
 function skipNullOrEmptyValue(key, value) {
     return (

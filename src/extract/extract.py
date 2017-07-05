@@ -31,7 +31,8 @@ argParser.add_argument(
     dest='optionNumEvents',
     metavar='NUM_EVENTS',
     default=1,
-    help='''Number of most recent events to extract.
+    help='''Maximum limit of the number of the most recent events to extract.
+            Specify a limit of 0 to get all events (use with caution!).
             Default: %(default)s'''
 )
 argParser.add_argument(
