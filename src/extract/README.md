@@ -72,17 +72,22 @@ ready to run.  The program accepts two command line options:
 
     Number of most recent events to extract. Default: 1
 
-> ℹ️ Note that `extract` currently uses a hard-coded query to extract events emitted
-> from a specific application that includes the string "problemroulette" in the JSON.
-> A future update will add an option to `extract` to allow specification of a
-> different query. 
+* **`--regex` _`REGEX`_**
+
+    Regular expression used to select events which have a
+    matching value in their "raw" property. The regular
+    expression must be valid for use with JavaScript.
+    Default: .*
 
 The output of `extract` will be one JSON object per line.  This is known
 as the [JSON Lines](http://jsonlines.org/) format.  This format makes further 
 processing of the events with command line tools easier.  The usual 
 filename extension for this format is `.jsonl`.
 
-## Example
+## Examples
+
+### Setup
+Follow these steps to set up the environment for the examples that follow.
 
 In the first terminal, set up the tunnel:
 
@@ -103,24 +108,34 @@ debug1: Local forwarding listening on 127.0.0.1 port 27017.
 ...
 ```
 
-In the second terminal, set the environment and run `extract`:
+In the second terminal, set up the environment:
 
 ```
 $ source env-.sh
-$ ./extract
+```
+
+### Example 1
+Again in the second terminal, run `extract`:
+
+```
+$ ./extract --regex 'problemroulette'
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:a438f8ac-1da3-4d48-8c86-94a1b387e0f6","type":"SessionEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"LoggedOut","object":{"id":"https://example.edu","type":"SoftwareApplication","version":"v2"},"eventTime":"2016-11-15T11:05:00.000Z","edApp":"https://problemroulette.example.edu","session":{"id":"https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","user":"https://example.edu/users/554433","dateCreated":"2016-11-15T10:00:00.000Z","startedAtTime":"2016-11-15T10:00:00.000Z","endedAtTime":"2016-11-15T11:05:00.000Z","duration":"PT3000S"}}
 ```
 
 In this example, `extract` returns only one Caliper event, since that is the default number
 of events.
 
+The `--regex` option is used to specify the regular expression `'problemroulette'`
+should be used to get only events whose `raw` attribute matches that expression.
+
 While `extract` runs, log information about the SSH tunnel may appear in the first terminal.
 
-Again in the second terminal, since the `env-.sh` script has already set the DB address in
-the environment, there's no need to do it again before another run of `extract`:
+### Example 2
+Again in the second terminal, run `extract` again with other options and output
+redirection:
 
 ```
-$ ./extract --num 5 > events.jsonl
+$ ./extract --num 5  --regex 'problemroulette' > events.jsonl
 $ cat events.jsonl
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:a438f8ac-1da3-4d48-8c86-94a1b387e0f6","type":"SessionEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"LoggedOut","object":{"id":"https://example.edu","type":"SoftwareApplication","version":"v2"},"eventTime":"2016-11-15T11:05:00.000Z","edApp":"https://problemroulette.example.edu","session":{"id":"https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","user":"https://example.edu/users/554433","dateCreated":"2016-11-15T10:00:00.000Z","startedAtTime":"2016-11-15T10:00:00.000Z","endedAtTime":"2016-11-15T11:05:00.000Z","duration":"PT3000S"}}
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:3bdab9e6-11cd-4a0f-9d09-8e363994176b","type":"AnnotationEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"Shared","object":{"id":"https://example.com/#/texts/imscaliperimplguide","type":"Document","name":"IMS Caliper Implementation Guide","version":"1.1"},"generated":{"id":"https://example.com/users/554433/texts/imscaliperimplguide/shares/1","type":"SharedAnnotation","annotator":"https://example.edu/users/554433","annotated":"https://example.com/#/texts/imscaliperimplguide","withAgents":[{"id":"https://example.edu/users/657585","type":"Person"},{"id":"https://example.edu/users/667788","type":"Person"}],"dateCreated":"2016-11-15T10:15:00.000Z"},"eventTime":"2016-11-15T10:15:00.000Z","edApp":{"id":"https://problemroulette.example.com/reader","type":"SoftwareApplication","name":"ePub Reader","version":"1.2.3"},"group":{"id":"https://example.edu/terms/201601/courses/7/sections/1","type":"CourseSection","courseNumber":"CPS 435-01","academicSession":"Fall 2016"},"membership":{"id":"https://example.edu/terms/201601/courses/7/sections/1/rosters/1","type":"Membership","member":"https://example.edu/users/554433","organization":"https://example.edu/terms/201601/courses/7/sections/1","roles":["Learner"],"status":"Active","dateCreated":"2016-08-01T06:00:00.000Z"},"session":{"id":"https://example.com/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","startedAtTime":"2016-11-15T10:00:00.000Z"}}
