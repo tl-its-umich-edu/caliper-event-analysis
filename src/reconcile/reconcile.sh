@@ -47,4 +47,3 @@ ls -lF ${BASE_FILENAME}-matching.tsv
 echo
 echo "Output line counts:"
 wc -l ${BASE_FILENAME}-*.tsv
-

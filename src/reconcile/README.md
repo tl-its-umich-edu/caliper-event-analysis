@@ -4,51 +4,58 @@
 
 ### Application log file
 
-Prepare log files from the application with as much data
-as possible to properly identify the Caliper events.  In
-the case of Problem Roulette (PR), those items are:
+Prepare event log files from the application with as much data
+as necessary to properly correlate them to Caliper events from
+the eventstore.  For example, timestamp, username, event type,
+action type, etc.
 
-* **Timestamp** (`.eventTime`): Must be UTC time
+In the case of Problem Roulette (PR), those items are:
+
+* **Timestamp** (`.eventTime` equivalent): Must be UTC time
 in ISO 8601 format.  Note that PR doesn't include
 fractional seconds in its timestamps.
-* **Actor** (`.actor.name`): The users' U-M uniqnames or email
-address for users with Friend accounts.
-PR created Caliper events with uniqname or email address in the
-`.actor.name` property. other applications may only put it
-in the `.actor.@id` property.  Note that email addresses
-will have special characters encoded (e.g., `@` is encoded
-as `%40`).
-* **Object ID** (`.object.@id`): The resource which the
-actor acted upon.  PR used the URL of questions stored
+* **Username** (`.actor.name` equiv.): The users' U-M uniqnames or
+email address for users with Friend accounts. PR created Caliper
+events with uniqname or email address in the `.actor.name`
+property.  Other applications may only put it in the `.actor.@id`
+property.  Note that email addresses will have special characters
+encoded (e.g., `@` is encoded as `%40`).
+* **Problem ID** (`.object.@id` equiv.): An ID of the problem
+which the user answered.  PR used the URL of problems stored
 in Google Docs.
-* **Answer** (`.generated.value`): The answer the actor
-gave for a question.  In the case of events with the
-`Completed` action, this value will be a string of a
-single digit 1-4.  Events with the `Skipped` action are 
-special: they have the value 0 in the log, but the value
-`null` (or possibly not present) in Caliper events.
+* **Answer** (`.generated.value` equiv.): The answer given by
+the user for a question.  If the answer is a string of a single
+digit 1-4, the Caliper event will have the `Completed` action.
+If the answer is the string "0", then the Caliper event will
+have the `Skipped` action and the `.generated.value` property
+may not be present or it may have the value `null`.
 
-To prepare the given PR log files (TSV) for validation:
+Once the corresponding data items from the application and the
+Caliper events have been identified, format the layout of the
+application log data.  This same format will be used for the
+Caliper event data file later.
 
-1. Remove column headings, the first line of each file.
-1. Remove the local time and UID columns.
-    ```
-    cut -f1,4-
-    ```
-1. Combine the two log files into one.
-1. Sort the combined log file.  Having the timestamp at
-the beginning of the line is convenient.
-    ```
-    sort
-    ```
+Recommendations:
+
+* One event per line.
+* Fields are tab delimited and the name of the file should have
+a `.tsv` extension.  TSV is a convenient format since the data
+probably won't contain tab characters (and is easier to work with
+than CSV).
+* Each line should begin with the timestamp.
+* Sort the lines of the file by timestamp.
 
 ### Caliper events
 
 Create a file of data from the Caliper events that matches the
-format of the application log file.  TSV is a convenient format
-for this purpose and is easier to work with than CSV.
+format of the application log file.  Assuming the Caliper events
+are in a single, large JSONL file:
 
-1. Get all events with the `Completed` or `Skipped` action.
+1. Get all events with the appropriate `@type` or `action`.  The
+basic `grep` utility is a good tool for this purpose.
+
+    For PR, those are events with the `Completed` or `Skipped`
+    action.
     ```
     fgrep -e 'action#Completed' -e 'action#Skipped'
     ```
@@ -57,110 +64,67 @@ for this purpose and is easier to work with than CSV.
     Avoid regular expressions as
     they are much slower to evaluate.  When regexes aren't
     needed, `fgrep` is faster than `grep` in most cases.
-1. Get the same properties from events in the same order
-as they appear in the PR log.
-    ```
-    jq -r '[.eventTime[:19]+"Z", .actor.name, .object["@id"], .generated.value//"0"]|@tsv'
-    ```
-    In this example, the fractional seconds are truncated from
-    `.eventTime`, "0" is output if `.generated.value` is null
-    or missing, and the output is formatted as TSV.
-1. Some actor names may be email addresses, but `@` has been
-encoded as `%40`, so decode them back.
-    ```
-    sed 's/%40/@/g'
-    ```
-    This is not ideal.  Other characters may also need
-    decoding.  Unfortunately, jq doesn't have a decode
-    function, so it must be done in an additional step,
-    like this.
-1. Sort the event data file.  Having the timestamp at
-the beginning of the line is convenient.
-    ```
-    sort
-    ```
-
->### ℹ️ Notes about duplicate lines
->Depending on the goal of the comparison, it may be desirable to 
-remove duplicate lines from the log and event data files.  Do this
-while sorting the files:
->```
->sort -u
->```
->To remove duplicate lines from a file that's already been sorted:
->```
->sort -m -u
->```
->(The `uniq` utility can remove duplicate lines from a sorted file,
-but the above command is usually much faster.)
->
-> `jq -Rr '(./" ")|.[-1]/"\t"+.[-2:-1]|@tsv'
-`
+1. Format the selected event JSON as TSV.  Either use the
+`caliperEventTsv.sh` script or follow the steps below.
+    1. Get the same properties from events in the same order
+    as they appear in the PR log.
+        ```
+        jq -r '[.eventTime[:19]+"Z", .actor.name, .object["@id"], .generated.value//"0"]|@tsv'
+        ```
+        In this example, the fractional seconds are truncated from
+        `.eventTime` and "0" is output if `.generated.value` is null
+        or missing.  Having the timestamp at the beginning of the
+        line is convenient for sorting the data.
+    1. Sort the event data file.  Having the timestamp at
+    the beginning of the line is convenient.
+        ```
+        sort
+        ```
+    1. Some actor names may be email addresses, but `@` has been
+    encoded as `%40`, so they need to be decoded.
+        ```
+        sed 's/%40/@/g'
+        ```
 
 ## Processing
 
-Once the application log file (`log.tsv`) and the event data file
-(`event.tsv`) are ready, comparing them is a simple matter of running
-them through the `comm` utility.
+Once the application log file and the event data file (e.g.,
+`log.tsv` and `event.tsv`) are ready, reconciling them is a
+simple matter of running them through the `comm` utility.
+
+The `reconcile.sh` script can check the input files, reconcile
+them, and produce three TSV files of data which represent
+missing, unlogged, and matching event data from the files.
+
+See the following sections for explanations of the three
+output files and commands for producing the files manually.
 
 ### Missing Caliper events
 
-To get only the log file lines that didn't match any lines of the
-event data file:
+Data from `log.tsv` that was not
+found in `event.tsv`.  This may represent a Caliper event that
+didn't get stored in the eventstore properly or there was trouble
+in sending it.  To get only the log file lines that didn't match
+any lines of the event data file:
 ```
 comm -23 log.tsv event.tsv > missing.tsv
 ```
 
 ### Unlogged Caliper events
 
-To get only the event data file lines that didn't match any lines of the
-log file:
+Data from `event.tsv` that was not
+included in `log.tsv`.  This may represent a problem in the
+application's logging or maybe events that entered the eventstore
+from a different source.  To get only the event data file lines
+that didn't match any lines of the log file:
 ```
 comm -13 log.tsv event.tsv > unlogged.tsv
 ```
 
 ### Matching Caliper events
 
-To get only the log file lines that matched any lines of the
-event data file:
+Data that was found in `log.tsv` and `event.tsv`.  To get only
+the log file lines that matched any lines of the event data file:
 ```
 comm -12 log.tsv event.tsv > matches.tsv
 ```
-
->### ⚠️ Combine comparison results to save time
->Although the `comm` utility runs very quickly, it may save time
-to save the combination of the previous three comparisons in one file,
-then extract the lines needed from that file.
->
-> **_Note_**: `comm` apparently doesn't append column delimiters to
-lines that have values in only columns 1 or 2!
->
->* Save the combined results
->    ```
->    comm --output-delimiter=\| log.tsv event.tsv > comm-all.txt 
->    ```
->* Get a column from combined results, for example, lines that
-appear only in the log file (i.e., missing Caliper events)
->    ```
->    cut -d\| -f1 comm-all.txt | fgrep .
->    ```
-
-
-In this 
-
-Running time: 0m3.5s
-
-
-1st comm run
-1523  2017-07-16T04:37:28Z: nohup comm -23 log.tsv event.tsv > missing.tsv &
--rw-rw-r--. 1 centos centos 104929677 Jul 16 04:37 missing.tsv
-
-
-2nd tsvEvent.sh run
--rw-rw-r--. 1 centos centos 142851885 Jul 17 04:59 event.tsv 
-$ cat event.start
-Mon Jul 17 04:55:46 UTC 2017
-
-2nd comm run
-Mon Jul 17 11:10:37 UTC 2017
-Mon Jul 17 11:10:44 UTC 2017
