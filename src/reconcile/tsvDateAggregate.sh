@@ -20,7 +20,7 @@ wc -l dates_all.tsv
 # add "0" to files that are missing dates
 for i in dates_*.tsv; do
     name=$(basename $i .tsv)
-    join -a1 -t$'\t' -e0 -o 0,2.2 dates_all.txt $i > ${name}_withZeroes.tsv
+    join -a1 -t$'\t' -e0 -o 0,2.2 dates_all.tsv $i > ${name}_withZeroes.tsv
 done
 
 wc -l dates_*_withZeroes.tsv
