@@ -17,33 +17,42 @@ if [[ $? != 0 ]]; then
 fi
 
 echo
-echo "Input line counts:"
+echo 'Starting at:' $(date)
+
+echo
+echo 'Input line counts:'
 wc -l ${1} ${2}
 
 echo
 echo "Output files: ${BASE_FILENAME}*"
 
 echo
-echo "Reconciling input data..."
+echo 'Reconciling input data...'
 
 comm -23 $1 $2 > ${BASE_FILENAME}-missing.tsv
 
 echo
-echo "Missing events output complete:"
+echo 'Missing events output complete:'
 ls -lF ${BASE_FILENAME}-missing.tsv
 
 comm -13 $1 $2 > ${BASE_FILENAME}-unlogged.tsv
 
 echo
-echo "Unlogged events output complete:"
+echo 'Unlogged events output complete:'
 ls -lF ${BASE_FILENAME}-unlogged.tsv
 
 comm -12 $1 $2 > ${BASE_FILENAME}-matching.tsv
 
 echo
-echo "Matching events output complete:"
+echo 'Matching events output complete:'
 ls -lF ${BASE_FILENAME}-matching.tsv
 
 echo
-echo "Output line counts:"
+echo 'Output line counts:'
 wc -l ${BASE_FILENAME}-*.tsv
+
+echo 'Getting all dates...'
+cut -c1-10 ${BASE_FILENAME}-*.tsv | sort -u > ${BASE_FILENAME}-dates.txt
+
+echo
+echo 'Ending at:' $(date)
