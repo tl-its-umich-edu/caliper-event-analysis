@@ -34,10 +34,10 @@
       "startedAtTime": .startTime,
     },
     "extensions": {
-      "correctAnswer": .correctAnswer,
-      "isStudentAnswerCorrect": .isAnswerCorrect,
+      "correctAnswer": "\(.correctAnswer)",
+      "isStudentAnswerCorrect": "\(.isAnswerCorrect)",
     },
-    "value": .actorAnswer,
+    "value": "\(.actorAnswer)",
   },
   "group": {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
