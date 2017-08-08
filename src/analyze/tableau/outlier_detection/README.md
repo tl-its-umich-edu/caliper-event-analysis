@@ -26,9 +26,9 @@ Command-line options:
 
 Sample command:
 	
-	python3 outlier_detection_ilf.py --perc 0.1 inputf.json
-	python3 outlier_detection_ilf.py --uselog inputf.json > outputf.csv
-	python3 outlier_detection_ilf.py inputf.json outputf.csv
+	python3 outlier_detect_ilf.py --perc 0.1 inputf.json
+	python3 outlier_detect_ilf.py --uselog inputf.json > outputf.csv
+	python3 outlier_detect_ilf.py inputf.json outputf.csv
 
 Data Output: a csv file with two columns.
 
