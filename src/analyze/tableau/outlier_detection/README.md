@@ -10,7 +10,7 @@ The program use [Isolation Forest](http://scikit-learn.org/stable/modules/genera
 	AttemptDuration: length of time PR user spent on the problem (measured in seconds).
 
 Command-line usage:
-
+	
 	outlier_detect_ilf.py [-h] [--perc CONTAMINATION] [--uselog] INPUT_FILE [OUTPUT_FILE]
 
 Command-line arguments:

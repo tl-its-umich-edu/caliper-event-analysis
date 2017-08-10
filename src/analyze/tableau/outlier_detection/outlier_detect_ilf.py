@@ -30,7 +30,7 @@ def parse_file_to_dataframe(f_name):
     return pd.DataFrame(events, columns=['OpenlrsSourceId', 'IsComplete', 'IsCorrect', 'AttemptCount', 'AttemptDuration'])
 
 def use_log_value(data):
-    data['AttemptDuration'] = map(lambda x: -1 if x == 0 else log(x), data['AttemptDuration'])
+    data['AttemptDuration'] = list(map(lambda x: -1 if x == 0 else log(x), data['AttemptDuration']))
 
 def ilf_outlier_detect(data, contamination, use_log):
     # generate column "IsInlier" as result of detection
