@@ -15,11 +15,12 @@ class Transformer:
 
     def event_transformer(self):
         try:
-            json_event = json.loads(self.event)
+            eventData = json.loads(self.event)
         except JSONDecodeError as e:
-            logging.error("Failed to Deserialize the caliper event %s ",e)
+            logging.error("Failed to Deserialize the caliper event %s ", e)
             return None
-        data = json_event['data']
-        data[0]['eventTime'] = self.get_current_date_time_iso8601_format()
-        json_event['sendTime'] = self.get_current_date_time_iso8601_format()
-        return json_event
+        envelope = eventData
+        event = eventData['data']
+        event[0]['eventTime'] = self.get_current_date_time_iso8601_format()
+        envelope['sendTime'] = self.get_current_date_time_iso8601_format()
+        return eventData
