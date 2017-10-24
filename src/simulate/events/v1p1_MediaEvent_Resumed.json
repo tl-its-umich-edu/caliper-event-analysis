@@ -1,0 +1,68 @@
+{
+  "sensor": "https://example.edu/sensors/1",
+  "sendTime": "2017-10-01T21:29:03.000Z",
+  "dataVersion": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+  "data": [
+    {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+      "id": "urn:uuid:956b4a02-8de0-4991-b8c5-b6eebb6b4cab",
+      "type": "MediaEvent",
+      "actor": {
+        "id": "",
+        "type": "Person"
+      },
+      "action": "Resumed",
+      "object": {
+        "id": "https://leccap.engin.umich.edu/leccap/viewer/r/FeLqjA",
+        "type": "VideoObject",
+        "duration": "PT5099.000S",
+        "isPartOf": {
+          "id": "https://leccap.engin.umich.edu/leccap/site/ziiq5uzrd9k06e6vjew",
+          "type": "WebPage",
+          "name": "EECS 370 001 / 002 / 003 / 004",
+          "dateCreated": "2017-10-01T06:41:17.000Z"
+        }
+      },
+      "target": {
+        "id": "https://leccap.engin.umich.edu/leccap/viewer/r/FeLqjA",
+        "type": "MediaLocation",
+        "name": "Lecture recorded on 10/01/2017",
+        "dateCreated": "2017-10-01T19:08:04.000Z",
+        "dateModified": "2017-10-01T21:29:03.000Z",
+        "currentTime": "PT2905.156S",
+        "isPartOf": {
+          "id": "https://leccap.engin.umich.edu/leccap/viewer/r/FeLqjA",
+          "type": "VideoObject"
+        }
+      },
+      "eventTime": "2017-10-01T21:29:03.000Z",
+      "edApp": "https://leccap.engin.umich.edu/leccap/",
+      "session": {
+        "id": "urn:umich:engin:leccap:session:nce9sqls42sps6sg9mkuvb8os6",
+        "type": "Session",
+        "name": "session-nce9sqls42sps6sg9mkuvb8os6",
+        "user": {
+          "id": "",
+          "type": "Person"
+        },
+        "startedAtTime": "2017-10-02T13:45:13.000Z"
+      },
+      "group": {
+        "id": "urn:umich:engin:leccap:course:m7c9zkvh0zw00j9fxto",
+        "type": "CourseOffering",
+        "academicSession": "FA 2017",
+        "courseNumber": "BIOLOGY 172"
+      },
+      "membership": {
+        "id": "urn:umich:engin:leccap:membership:m7c9zkvh0zw00j9fxto",
+        "type": "Membership",
+        "member": "",
+        "organization": "urn:umich:engin:leccap:membership:m7c9zkvh0zw00j9fxto",
+        "roles": [
+          "Learner"
+        ],
+        "status": "Active"
+      }
+    }
+  ]
+}

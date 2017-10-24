@@ -11,5 +11,5 @@
 
 ###### Notes 
 
-1. Sample properties file `props.ini` and `logging.ini` is placed in the config directory. 
+1. Sample properties file `config.yml` and `logging.ini` is placed in the config directory. 
 2. logs can be emitted to the stdout or to a file. The default logs is at the `/log` 

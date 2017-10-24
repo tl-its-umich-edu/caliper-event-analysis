@@ -1,0 +1,32 @@
+http:
+  url: http://lti.tools/caliper/event?key=udp_dev
+  token: uy76fuo0gDRT
+users:
+    - id  : user001
+      sis_id : user001_sisid
+      canvas_id : user001_cid
+    - id  : user002
+      sis_id : user0012_sisid
+      canvas_id : user002_cid
+    - id  : user003
+      sis_id : user003_sisid
+      canvas_id : user003_cid
+    - id  : user004
+      sis_id : user004_sisid
+      canvas_id : user005_cid
+    - id  : user005
+      sis_id : user005_sisid
+      canvas_id : user005_cid
+courses:
+    - course_site : https://leccap.engin.umich.edu/leccap/site/iosb1eezb220x49khge
+      course_name : BIOLOGY 172
+      course_sis_id : m7c9zkvh0zw00j9fxto
+      video_player: ["https://leccap.engin.umich.edu/leccap/viewer/r/woNYn8","https://leccap.engin.umich.edu/leccap/viewer/r/FeLqjA"]
+    - course_site : https://leccap.engin.umich.edu/leccap/site/ziiq5uzrd9k06e6vjew
+      course_name : EECS 370
+      course_sis_id : f3d730E865325A1A889
+      video_player : ["https://leccap.engin.umich.edu/leccap/viewer/r/DOUPtp","https://leccap.engin.umich.edu/leccap/viewer/r/ftmY7G"]
+    - course_site : https://leccap.engin.umich.edu/leccap/site/6cbf6ghw4021r2k0dgz
+      course_name : BIOLOGY 305
+      course_sis_id : 546cf6f1c13EB417C28
+      video_player : ["https://leccap.engin.umich.edu/leccap/viewer/r/Lhfl0a","https://leccap.engin.umich.edu/leccap/viewer/r/KlBVNt"]
