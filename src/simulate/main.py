@@ -16,7 +16,7 @@ from yaml import YAMLError
 
 def main():
     utils.setup_logging()
-    logging.info("Start Of Script")
+    logging.info("Start Of App")
     logging.info("Python version %s", sys.version)
     logging.info("OpenSSL version %s ", ssl.OPENSSL_VERSION)
 
@@ -66,7 +66,7 @@ def main():
             # sending to endpoint
             handler = HttpHandler(config_yml_obj)
             handler.make_api_call(json_event_transformed)
-    logging.info("End Of Script")
+    logging.info("End Of App")
 
 
 if __name__ == "__main__":
