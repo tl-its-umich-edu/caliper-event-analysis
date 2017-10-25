@@ -7,7 +7,13 @@
 3. To install the required modules for the utility do pip install -r requirements.txt
 
 ### Run 
- `python3 main.py <path-to properties-file> <path-to-json-events-directory>` 
+ `python3 main.py <path-to properties-file> <path-to-json-events-directory> <number-of-times-to-send-static-events>`
+ 
+ The application takes 3 command line arguments 
+  1. properties that contains sample user/course data also endpoint credentials. 
+  2. A directory path that contains sample of 5 json events from leccap application
+  3. A number representing the number of time to send the same sample events to the Endpoint
+  
 
 ###### Notes 
 

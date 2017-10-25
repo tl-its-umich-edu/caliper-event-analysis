@@ -13,7 +13,7 @@ users:
       canvas_id : user003_cid
     - id  : user004
       sis_id : user004_sisid
-      canvas_id : user005_cid
+      canvas_id : user004_cid
     - id  : user005
       sis_id : user005_sisid
       canvas_id : user005_cid
