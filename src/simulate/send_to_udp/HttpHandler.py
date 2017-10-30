@@ -1,5 +1,6 @@
 import logging
 import requests
+import utils
 
 
 class HttpHandler:
@@ -9,14 +10,14 @@ class HttpHandler:
     def make_api_call(self, data):
         response = None
         try:
-            http = self.config_data['http']
+            http = self.config_data[utils.PROPS_HTTP]
         except KeyError:
             logging.error("configuration yaml is missing the \"http\" key")
             return
         if http is None or http['url'] is None:
             logging.error("End Point URL information not available to the configuration yml file")
             return
-        url = http['url']
+        url = http[utils.PROPS_URL]
         mime_type_json = 'application/json'
         content_type = 'Content-type'
         headers = {content_type: mime_type_json}
