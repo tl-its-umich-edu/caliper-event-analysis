@@ -29,7 +29,7 @@ class Transformer:
         user_sis_id = user[utils.PROPS_USER_SIS_ID]
         user_canvas_id = user[utils.PROPS_USER_CANVAS_ID]
         self.event['actor'] = user_id
-        # self.event['session']['user']['id'] = user_id
+        self.event['session']['user']= user_id
         self.event['membership']['member'] = user_id
         # federated user info
         fed_session = self.event['federatedSession']
@@ -90,7 +90,7 @@ class Transformer:
     def change_duration_and_current_time(self):
         action = self.event['action']
         if action != 'LoggedIn':
-            duration = +utils.random_number_with_n_digits(4)
+            duration = utils.random_number_with_n_digits(4)
             self.event['object']['duration']='PT'+str(duration)+'.000S'
             if action != 'Started':
                 current_time = utils.get_the_current_time(duration)
@@ -103,7 +103,7 @@ class Transformer:
         self.event['id'] = utils.get_uuid()
         user = self.change_user_in_event()
         self.change_course_info(user)
-        # self.change_session_info()
+        self.change_session_info()
         self.change_duration_and_current_time()
 
         logging.debug(json.dumps(self.eventData, indent=4))
