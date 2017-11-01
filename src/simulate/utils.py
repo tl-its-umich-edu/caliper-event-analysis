@@ -50,14 +50,12 @@ def get_current_date_time_iso8601_format():
 def get_current_date():
     return datetime.datetime.utcnow().strftime('%m/%d/%Y')
 
-
+# returns a random n digit number
 def random_number_with_n_digits(n):
-    range_start = 10**(n-1)
-    range_end = (10**n)-1
+    range_start = 10 ** (n - 1)
+    range_end = (10 ** n) - 1
     return randint(range_start, range_end)
 
-
-def get_the_current_time(n):
+# this will generate a floating point number between the range [0,n]
+def get_random_floating_point_number(n):
     return '{:04.3f}'.format(random.uniform(0, n))
-
-
