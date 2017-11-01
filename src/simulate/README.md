@@ -13,3 +13,16 @@
 
 1. Sample properties file `config.yml` and `logging.yml` is placed in the `config` directory. 
 2. logs are emitted to the stdout,file. The default logs is at the `/log` 
+
+###### Docker
+1. Build the images first  ` docker build -t my-python-app .` 
+2. Run image in a container`docker run -it --rm --name my-running-app my-python-app`
+
+##### Useful Docker Commands 
+1. Lists all the docker images `docker images` 
+2. shows last running containers `docker ps`
+3. Lists all the running containers `docker ps -a`
+4. remove docker images `docker rmi <image-name>`
+5. remove all docker images `docker rmi $(docker images -q)`
+6. remove docker container `docker rm <container-name>`
+7. remove docker all containers `docker rm $(docker ps -a -q)`

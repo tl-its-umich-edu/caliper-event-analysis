@@ -107,6 +107,6 @@ class Transformer:
         self.change_session_info()
         self.change_duration_and_current_time()
 
-        logging.debug(json.dumps(self.eventData, indent=4))
-        logging.debug("-------------------------------------------")
+        logging.info(json.dumps(self.eventData, indent=4))
+        logging.info("-------------------------------------------")
         return self.eventData
