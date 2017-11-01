@@ -19,6 +19,7 @@ PROPS_COURSES = 'courses'
 PROPS_USERS = 'users'
 PROPS_HTTP = 'http'
 PROPS_URL = 'url'
+PROPS_PLAYER_NAME = 'player_name'
 
 
 def setup_logging(path='config/logging.yml',

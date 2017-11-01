@@ -11,6 +11,7 @@
       "action": "Resumed",
       "object": {
         "id": "https://leccap.engin.umich.edu/leccap/viewer/r/FeLqjA",
+        "name": "Lecture recorded on 9/19/2017",
         "type": "VideoObject",
         "duration": "PT5099.000S",
         "isPartOf": {

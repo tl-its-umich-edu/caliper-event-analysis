@@ -58,11 +58,13 @@ class Transformer:
             target = self.event['target']
             object['name'] = 'Lecture recorded on ' + utils.get_current_date()
             video_player = random.choice(a_course_info[utils.PROPS_VIDEO_PLAYER])
-            object['id'] = video_player
+            video_id = video_player[utils.PROPS_USER_ID]
+            object['id'] = video_id
+            object['name'] = video_player[utils.PROPS_PLAYER_NAME]
             object['isPartOf']['id'] = a_course_info[utils.PROPS_COURSE_SITE]
             object['isPartOf']['name'] = a_course_info[utils.PROPS_COURSE_NAME]
-            target['id'] = video_player + '#type=MediaLocation'
-            target['isPartOf'] = video_player
+            target['id'] = video_id + '#type=MediaLocation'
+            target['isPartOf'] = video_id
         # group and membership is part of all elements
 
         # group
