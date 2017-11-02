@@ -48,9 +48,6 @@ def get_current_date_time_iso8601_format():
     return iso_utc_now
 
 
-def get_current_date():
-    return datetime.datetime.utcnow().strftime('%m/%d/%Y')
-
 # returns a random n digit number
 def random_number_with_n_digits(n):
     range_start = 10 ** (n - 1)

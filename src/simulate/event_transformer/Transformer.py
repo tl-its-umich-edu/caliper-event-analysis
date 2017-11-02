@@ -56,7 +56,6 @@ class Transformer:
             logging.debug('Action=%s', action)
             object = self.event['object']
             target = self.event['target']
-            object['name'] = 'Lecture recorded on ' + utils.get_current_date()
             video_player = random.choice(a_course_info[utils.PROPS_VIDEO_PLAYER])
             video_id = video_player[utils.PROPS_USER_ID]
             object['id'] = video_id

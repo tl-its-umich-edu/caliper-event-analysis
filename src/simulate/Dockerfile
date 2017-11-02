@@ -9,5 +9,5 @@ RUN pwd
 COPY . .
 RUN ls -la
 RUN pwd
-ENTRYPOINT [ "./main.py", "/usr/local/config-volume/config.yml", "/usr/local/events"]
+ENTRYPOINT [ "./main.py", "config/config.yml", "events"]
 #CMD ['/bin/bash']
