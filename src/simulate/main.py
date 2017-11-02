@@ -43,29 +43,30 @@ def main():
     files = os.listdir(json_files_dir)
     logging.info('list of json files in the directory %s', files)
     for file in files:
-        path_to_file = json_files_dir + "/" + file
-        try:
-            caliper_event = open(path_to_file, 'rb')
-        except IOError as e:
-            logging.error('cannot read the file %s due to %s', path_to_file, e)
-            continue
-        with caliper_event:
-            event = caliper_event.read()
+        if file.endswith(".json"):
+            path_to_file = json_files_dir + "/" + file
             try:
-                jsonEvent = json.loads(event)
-            except JSONDecodeError as e:
-                logging.error('Failed to Deserialize the caliper event %s ', e)
+                caliper_event = open(path_to_file, 'rb')
+            except IOError as e:
+                logging.error('cannot read the file %s due to %s', path_to_file, e)
                 continue
-            # make needed changes to the json events
-            event_transformer = Transformer(jsonEvent, config_yml_obj)
-            json_event_transformed = event_transformer.event_transformer()
+            with caliper_event:
+                event = caliper_event.read()
+                try:
+                    jsonEvent = json.loads(event)
+                except JSONDecodeError as e:
+                    logging.error('Failed to Deserialize the caliper event %s ', e)
+                    continue
+                # make needed changes to the json events
+                event_transformer = Transformer(jsonEvent, config_yml_obj)
+                json_event_transformed = event_transformer.event_transformer()
 
-            if json_event_transformed is None:
-                logging.error('Problem in transforming a event Json')
-                continue
-            # sending to endpoint
-            handler = HttpHandler(config_yml_obj)
-            handler.make_api_call(json_event_transformed)
+                if json_event_transformed is None:
+                    logging.error('Problem in transforming a event Json')
+                    continue
+                # sending to endpoint
+                handler = HttpHandler(config_yml_obj)
+                handler.make_api_call(json_event_transformed)
     logging.info('End Of App')
 
 

@@ -1,4 +1,4 @@
-FROM python:3
+FROM docker.io/python:3
 WORKDIR /usr/src/app
 RUN ls -la
 RUN pwd
