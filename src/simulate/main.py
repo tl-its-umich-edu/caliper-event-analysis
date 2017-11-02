@@ -12,6 +12,8 @@ from event_transformer.Transformer import Transformer
 from send_to_udp.HttpHandler import HttpHandler
 import yaml
 from yaml import YAMLError
+import random
+from time import sleep
 
 
 def main():
@@ -23,9 +25,12 @@ def main():
     args = argparse.ArgumentParser()
     args.add_argument('property_files', help='path to the config.yml file')
     args.add_argument('directory_json_files', help='path to directory that contains json files')
+    args.add_argument('times_to_run', nargs='?', help='number representing how many times to send the static events',
+                      type=int, default=1)
     parse_args = args.parse_args()
     properties_filename = parse_args.property_files
     json_files_dir = parse_args.directory_json_files
+    run_count = parse_args.times_to_run
 
     # trying to read the properties file which is a yaml file
     try:
@@ -42,31 +47,34 @@ def main():
 
     files = os.listdir(json_files_dir)
     logging.info('list of json files in the directory %s', files)
-    for file in files:
-        if file.endswith(".json"):
-            path_to_file = json_files_dir + "/" + file
-            try:
-                caliper_event = open(path_to_file, 'rb')
-            except IOError as e:
-                logging.error('cannot read the file %s due to %s', path_to_file, e)
-                continue
-            with caliper_event:
-                event = caliper_event.read()
+    for i in range(run_count):
+        for file in files:
+            if file.endswith(".json"):
+                path_to_file = json_files_dir + "/" + file
                 try:
-                    jsonEvent = json.loads(event)
-                except JSONDecodeError as e:
-                    logging.error('Failed to Deserialize the caliper event %s ', e)
+                    caliper_event = open(path_to_file, 'rb')
+                except IOError as e:
+                    logging.error('cannot read the file %s due to %s', path_to_file, e)
                     continue
-                # make needed changes to the json events
-                event_transformer = Transformer(jsonEvent, config_yml_obj)
-                json_event_transformed = event_transformer.event_transformer()
+                with caliper_event:
+                    event = caliper_event.read()
+                    try:
+                        jsonEvent = json.loads(event)
+                    except JSONDecodeError as e:
+                        logging.error('Failed to Deserialize the caliper event %s', e)
+                        continue
+                    # make needed changes to the json events
+                    event_transformer = Transformer(jsonEvent, config_yml_obj)
+                    json_event_transformed = event_transformer.event_transformer()
 
-                if json_event_transformed is None:
-                    logging.error('Problem in transforming a event Json')
-                    continue
-                # sending to endpoint
-                handler = HttpHandler(config_yml_obj)
-                handler.make_api_call(json_event_transformed)
+                    if json_event_transformed is None:
+                        logging.error('Problem in transforming a event Json')
+                        continue
+                    # sending to endpoint
+                    handler = HttpHandler(config_yml_obj)
+                    handler.make_api_call(json_event_transformed)
+                    sleep(random.uniform(0.5, 1))
+        logging.info('running count %s ', i + 1)
 
     logging.info('End Of App')
 

@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Pod
+metadata:
+# A new Pod is created with mentioned name for each run and it is essential that each time you run the app a new pod name should be given
+  name: pod2
+spec:
+  containers:
+  - name: barepod
+  # Docker image name
+    image: 172.30.183.221:5000/simulator-dev/simulator
+    # command starts the python app , the last argument is the number of times to run simulation and if not given default to one run
+    command: ["python3", "main.py","/usr/local/config-volume/config.yml","/usr/local/events","2"]
+#    creating volumeMounts in a running container and attach secrets to a particular path in container
+    volumeMounts:
+        # name must match the volume name below
+        - name: config-volume
+        # the mount path in the containers, this will mount the config.yml to the below mentioned path
+          mountPath: /usr/local/config-volume
+          # the 'events' get placed under this location in a container
+        - name: event-volume
+          mountPath: /usr/local/events
+  # the app is run on demand and creates a pod each time it runs, so we don't want the pod to restart
+  restartPolicy: Never
+  # mapping of the volume mount and secrets.
+  volumes:
+    - name: config-volume
+      secret:
+        secretName: config
+    - name: event-volume
+      secret:
+        secretName: events
+
+
+
