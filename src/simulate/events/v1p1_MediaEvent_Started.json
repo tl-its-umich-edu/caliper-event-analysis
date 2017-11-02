@@ -1,0 +1,70 @@
+{
+  "sensor": "https://example.edu/sensors/1",
+  "sendTime": "2017-10-01T21:29:03.000Z",
+  "dataVersion": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+  "data": [
+    {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+      "id": "urn:uuid:956b4a02-8de0-4991-b8c5-b6eebb6b4cab",
+      "type": "MediaEvent",
+      "actor": "",
+      "action": "Started",
+      "object": {
+        "id": "https://leccap.engin.umich.edu/leccap/viewer/r/DOUPtp",
+        "type": "VideoObject",
+        "name": "Lecture recorded on 9/26/2017",
+        "dateCreated": "2017-09-26T17:08:04.000Z",
+        "dateModified": "2017-10-01T21:29:03.000Z",
+        "duration": "PT5098.000S",
+        "isPartOf": {
+          "id": "https://leccap.engin.umich.edu/leccap/site/iosb1eezb220x49khge",
+          "type": "WebPage",
+          "name": "BIOLOGY 305 001",
+          "dateCreated": "2017-08-31T15:10:10.000Z"
+        }
+      },
+      "target": {
+        "id": "https://leccap.engin.umich.edu/leccap/viewer/r/DOUPtp#type=MediaLocation",
+        "type": "MediaLocation",
+        "currentTime": "PT0.000S",
+        "isPartOf": "https://leccap.engin.umich.edu/leccap/viewer/r/DOUPtp"
+      },
+      "eventTime": "2017-10-01T21:29:03.000Z",
+      "edApp": "https://leccap.engin.umich.edu/leccap/",
+      "session": {
+        "id": "urn:umich:engin:leccap:session:nce9sqls42sps6sg9mkuvb8os6",
+        "type": "Session",
+        "user": "",
+        "startedAtTime": "2017-10-02T13:45:13.000Z"
+      },
+      "group": {
+        "id": "https://leccap.engin.umich.edu/leccap/site/iosb1eezb220x49khge#type=CourseOffering",
+        "type": "CourseOffering",
+        "courseNumber": "BIOLOGY 305 001",
+        "academicSession": "FA 2017"
+      },
+      "membership": {
+        "id": "https://leccap.engin.umich.edu/leccap/site/iosb1eezb220x49khge#type=Membership&member=",
+        "type": "Membership",
+        "member": "",
+        "organization": "https://leccap.engin.umich.edu/leccap/site/iosb1eezb220x49khge#type=CourseOffering",
+        "roles": [
+          "Learner"
+        ],
+        "status": "Active"
+      },
+      "federatedSession": {
+        "id": "urn:instructure:canvas:umich:session:CeMXNmX3CKwEYiIJOxc5aBlZMc8pnYddSxkmLA",
+        "type": "LtiSession",
+        "user": "",
+        "messageParameters": {
+          "custom_canvas_course_id": "182507",
+          "custom_canvas_user_id": "88",
+          "lis_course_offering_sourcedid": "216004646201001",
+          "lis_person_sourcedid": "92978488",
+          "resource_link_id": "9a17100e4c806512a4a34b20d61dd8786d2c9826"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+endpoint:
+  url: http://lti.tools/caliper/event?key=udp_dev
+  token: uy76fuo0gDRT
+users:
+    - id  : user001
+      user_sis_id : user001_sisid
+      user_canvas_id : user001_cid
+    - id  : user002
+      user_sis_id : user0012_sisid
+      user_canvas_id : user002_cid
+    - id  : user003
+      user_sis_id : user003_sisid
+      user_canvas_id : user003_cid
+    - id  : user004
+      user_sis_id : user004_sisid
+      user_canvas_id : user004_cid
+    - id  : user005
+      user_sis_id : user005_sisid
+      user_canvas_id : user005_cid
+courses:
+    - course_site : https://leccap.engin.umich.edu/leccap/site/iosb1eezb220x49khge
+      course_name : BIOLOGY 172
+      course_sis_id : 216004646201001
+      course_canvas_id: 182678
+      video_player:
+          - id : https://leccap.engin.umich.edu/leccap/viewer/r/woNYn8
+            player_name : molecules study
+          - id : https://leccap.engin.umich.edu/leccap/viewer/r/FeLqjA
+            player_name: Immunology
+    - course_site : https://leccap.engin.umich.edu/leccap/site/ziiq5uzrd9k06e6vjew
+      course_name : EECS 370
+      course_sis_id : 216004546201101
+      course_canvas_id: 184567
+      video_player :
+          - id : https://leccap.engin.umich.edu/leccap/viewer/r/DOUPtp
+            player_name : kinetic energy
+          - id : https://leccap.engin.umich.edu/leccap/viewer/r/ftmY7G
+            player_name : potential energy
+    - course_site : https://leccap.engin.umich.edu/leccap/site/6cbf6ghw4021r2k0dgz
+      course_name : BIOLOGY 305 001 / BIOLOGY 305 003
+      course_sis_id : 216004546202201
+      course_canvas_id: 184047
+      video_player :
+          - id : https://leccap.engin.umich.edu/leccap/viewer/r/Lhfl0a
+            player_name : Macromolecules
+          - id : https://leccap.engin.umich.edu/leccap/viewer/r/KlBVNt
+            player_name: Homeostasis
