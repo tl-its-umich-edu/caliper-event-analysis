@@ -17,7 +17,7 @@ PROPS_COURSE_CANVAS_ID = 'course_canvas_id'
 PROPS_VIDEO_PLAYER = 'video_player'
 PROPS_COURSES = 'courses'
 PROPS_USERS = 'users'
-PROPS_HTTP = 'http'
+PROPS_ENDPOINT = 'endpoint'
 PROPS_URL = 'url'
 PROPS_PLAYER_NAME = 'player_name'
 
@@ -47,9 +47,6 @@ def get_current_date_time_iso8601_format():
     iso_utc_now = iso_utc_now[:-3] + 'Z'
     return iso_utc_now
 
-
-def get_current_date():
-    return datetime.datetime.utcnow().strftime('%m/%d/%Y')
 
 # returns a random n digit number
 def random_number_with_n_digits(n):
