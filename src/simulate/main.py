@@ -67,6 +67,7 @@ def main():
                 # sending to endpoint
                 handler = HttpHandler(config_yml_obj)
                 handler.make_api_call(json_event_transformed)
+
     logging.info('End Of App')
 
 

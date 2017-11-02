@@ -1,4 +1,4 @@
-http:
+endpoint:
   url: http://lti.tools/caliper/event?key=udp_dev
   token: uy76fuo0gDRT
 users:

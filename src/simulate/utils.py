@@ -17,7 +17,7 @@ PROPS_COURSE_CANVAS_ID = 'course_canvas_id'
 PROPS_VIDEO_PLAYER = 'video_player'
 PROPS_COURSES = 'courses'
 PROPS_USERS = 'users'
-PROPS_HTTP = 'http'
+PROPS_ENDPOINT = 'endpoint'
 PROPS_URL = 'url'
 PROPS_PLAYER_NAME = 'player_name'
 
