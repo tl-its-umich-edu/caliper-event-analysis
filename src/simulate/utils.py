@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 import logging.config
 import os
 import random
@@ -6,6 +6,7 @@ import uuid
 import string
 import yaml
 from random import randint
+
 
 PROPS_USER_ID = 'id'
 PROPS_USER_SIS_ID = 'user_sis_id'
@@ -43,7 +44,7 @@ def get_random_alpha_numeric_string(length):
 
 
 def get_current_date_time_iso8601_format():
-    iso_utc_now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')
+    iso_utc_now = (datetime.utcnow()+timedelta(seconds=random.randint(1,9))).strftime('%Y-%m-%dT%H:%M:%S.%f')
     iso_utc_now = iso_utc_now[:-3] + 'Z'
     return iso_utc_now
 

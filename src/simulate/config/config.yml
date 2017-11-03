@@ -6,7 +6,7 @@ users:
       user_sis_id : user001_sisid
       user_canvas_id : user001_cid
     - id  : user002
-      user_sis_id : user0012_sisid
+      user_sis_id : user002_sisid
       user_canvas_id : user002_cid
     - id  : user003
       user_sis_id : user003_sisid

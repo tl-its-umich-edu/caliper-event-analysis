@@ -96,10 +96,9 @@ class Transformer:
                 current_time = utils.get_random_floating_point_number(duration)
                 self.event['target']['currentTime'] = 'PT' + str(current_time) + 'S'
 
-    def event_transformer(self):
-        self.envelope['sendTime'] = utils.get_current_date_time_iso8601_format()
-
+    def transformer(self):
         self.event['eventTime'] = utils.get_current_date_time_iso8601_format()
+        self.envelope['sendTime'] = utils.get_current_date_time_iso8601_format()
         self.event['id'] = utils.get_uuid()
         user = self.change_user_in_event()
         self.change_course_info(user)
