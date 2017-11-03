@@ -12,8 +12,6 @@ from event_transformer.Transformer import Transformer
 from send_to_udp.HttpHandler import HttpHandler
 import yaml
 from yaml import YAMLError
-import random
-from time import sleep
 
 
 def main():
@@ -63,7 +61,7 @@ def main():
                     continue
                 # make needed changes to the json events
                 event_transformer = Transformer(jsonEvent, config_yml_obj)
-                json_event_transformed = event_transformer.event_transformer()
+                json_event_transformed = event_transformer.transformer()
 
                 if json_event_transformed is None:
                     logging.error('Problem in transforming a event Json')
@@ -71,10 +69,9 @@ def main():
                 # sending to endpoint
                 handler = HttpHandler(config_yml_obj)
                 handler.make_api_call(json_event_transformed)
-                sleep(random.uniform(0.5, 1))
         logging.info('running count %s ', i + 1)
 
-    logging.info('End Of Script')
+    logging.info('End Of App')
 
 
 if __name__ == '__main__':
