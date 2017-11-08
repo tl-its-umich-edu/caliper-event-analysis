@@ -12,8 +12,22 @@ from event_transformer.Transformer import Transformer
 from send_to_udp.HttpHandler import HttpHandler
 import yaml
 from yaml import YAMLError
-import random
-from time import sleep
+
+
+def read_json(json_file_path):
+    try:
+        caliper_event = open(json_file_path, 'rb')
+    except IOError as e:
+        logging.error('cannot read the file %s due to %s', json_file_path, e)
+        return None
+    with caliper_event:
+        event = caliper_event.read()
+        try:
+            json_event = json.loads(event)
+        except JSONDecodeError as e:
+            logging.error('Failed to Deserialize the caliper event %s', e)
+            return None
+    return json_event
 
 
 def main():
@@ -51,29 +65,19 @@ def main():
         for file in files:
             if file.endswith(".json"):
                 path_to_file = json_files_dir + "/" + file
-                try:
-                    caliper_event = open(path_to_file, 'rb')
-                except IOError as e:
-                    logging.error('cannot read the file %s due to %s', path_to_file, e)
+                # Deserialize Json data
+                json_event = read_json(path_to_file)
+                if json_event is None:
                     continue
-                with caliper_event:
-                    event = caliper_event.read()
-                    try:
-                        jsonEvent = json.loads(event)
-                    except JSONDecodeError as e:
-                        logging.error('Failed to Deserialize the caliper event %s', e)
-                        continue
-                    # make needed changes to the json events
-                    event_transformer = Transformer(jsonEvent, config_yml_obj)
-                    json_event_transformed = event_transformer.event_transformer()
-
-                    if json_event_transformed is None:
-                        logging.error('Problem in transforming a event Json')
-                        continue
-                    # sending to endpoint
-                    handler = HttpHandler(config_yml_obj)
-                    handler.make_api_call(json_event_transformed)
-                    sleep(random.uniform(0.5, 1))
+                # make needed changes to the json events
+                event_transformer = Transformer(json_event, config_yml_obj)
+                json_event_transformed = event_transformer.transformer()
+                if json_event_transformed is None:
+                    logging.error('Problem in transforming a event Json')
+                    continue
+                # sending to endpoint
+                handler = HttpHandler(config_yml_obj)
+                handler.make_api_call(json_event_transformed)
         logging.info('running count %s ', i + 1)
 
     logging.info('End Of App')
