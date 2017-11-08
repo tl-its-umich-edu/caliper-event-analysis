@@ -40,11 +40,12 @@
 4. To run the build download the file `pod-batch.yaml`(name can be anything) from the GitHub Repo and run it as
  
         `oc create -f pod-batch.yaml`
-   This will create a Pod running the simulator application. checkout the run [here](https://openshift.dsc.umich.edu:8443/console/project/simulator-dev/browse/pods). Go to the logs to check the output of pods
+   This will create a Pod running the simulator application. checkout the run [here](https://openshift.dsc.umich.edu:8443/console/project/simulator-dev/browse/pods), go to the logs  to check the output of pods. 
+   From command line `oc logs pod/<pod-name>` or pull the entire logs to file using `oc logs pod/<pod-name> >logs.txt`
    
 
 ###### Notes 
 
 1. Sample properties file `config.yml` and `logging.yml` is placed in the `config` directory. 
-2. logs are emitted to the stdout,file. The default logs is at the `/log` 
+2. logs are emitted to the stdout. 
 

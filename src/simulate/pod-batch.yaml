@@ -10,6 +10,11 @@ spec:
     image: 172.30.183.221:5000/simulator-dev/simulator
     # command starts the python app , the last argument is the number of times to run simulation and if not given default to one run
     command: ["python3", "main.py","/usr/local/config-volume/config.yml","/usr/local/events","2"]
+    env:
+    # setting the logging level via environmental variable
+    - name: LOGGING_LEVEL
+    # logging level will be set to info other values could debug,fatal etc. not case sensitive
+      value: "info"
 #    creating volumeMounts in a running container and attach secrets to a particular path in container
     volumeMounts:
         # name must match the volume name below
