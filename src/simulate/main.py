@@ -73,7 +73,7 @@ def main():
                 event_transformer = Transformer(json_event, config_yml_obj)
                 json_event_transformed = event_transformer.transformer()
                 if json_event_transformed is None:
-                    logging.error('Problem in transforming a event Json')
+                    logging.error('Problem in transforming an event Json')
                     continue
                 # sending to endpoint
                 handler = HttpHandler(config_yml_obj)

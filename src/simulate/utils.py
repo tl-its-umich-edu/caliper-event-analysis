@@ -8,6 +8,7 @@ import yaml
 from random import randint
 from os import environ
 
+
 PROPS_USER_ID = 'id'
 PROPS_USER_SIS_ID = 'user_sis_id'
 PROPS_USER_CANVAS_ID = 'user_canvas_id'
