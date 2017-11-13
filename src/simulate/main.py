@@ -14,6 +14,22 @@ import yaml
 from yaml import YAMLError
 
 
+def read_json(json_file_path):
+    try:
+        caliper_event = open(json_file_path, 'rb')
+    except IOError as e:
+        logging.error('cannot read the file %s due to %s', json_file_path, e)
+        return None
+    with caliper_event:
+        event = caliper_event.read()
+        try:
+            json_event = json.loads(event)
+        except JSONDecodeError as e:
+            logging.error('Failed to Deserialize the caliper event %s', e)
+            return None
+    return json_event
+
+
 def main():
     utils.setup_logging()
     logging.info('Start Of App')
@@ -23,7 +39,8 @@ def main():
     args = argparse.ArgumentParser()
     args.add_argument('property_files', help='path to the config.yml file')
     args.add_argument('directory_json_files', help='path to directory that contains json files')
-    args.add_argument('times_to_run', help='number representing how many times to send the static events', type=int)
+    args.add_argument('times_to_run', nargs='?', help='number representing how many times to send the static events',
+                      type=int, default=1)
     parse_args = args.parse_args()
     properties_filename = parse_args.property_files
     json_files_dir = parse_args.directory_json_files
@@ -46,25 +63,17 @@ def main():
     logging.info('list of json files in the directory %s', files)
     for i in range(run_count):
         for file in files:
-            path_to_file = json_files_dir + "/" + file
-            try:
-                caliper_event = open(path_to_file, 'rb')
-            except IOError as e:
-                logging.error('cannot read the file %s due to %s', path_to_file, e)
-                continue
-            with caliper_event:
-                event = caliper_event.read()
-                try:
-                    jsonEvent = json.loads(event)
-                except JSONDecodeError as e:
-                    logging.error('Failed to Deserialize the caliper event %s', e)
+            if file.endswith(".json"):
+                path_to_file = json_files_dir + "/" + file
+                # Deserialize Json data
+                json_event = read_json(path_to_file)
+                if json_event is None:
                     continue
                 # make needed changes to the json events
-                event_transformer = Transformer(jsonEvent, config_yml_obj)
+                event_transformer = Transformer(json_event, config_yml_obj)
                 json_event_transformed = event_transformer.transformer()
-
                 if json_event_transformed is None:
-                    logging.error('Problem in transforming a event Json')
+                    logging.error('Problem in transforming an event Json')
                     continue
                 # sending to endpoint
                 handler = HttpHandler(config_yml_obj)
