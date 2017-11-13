@@ -24,7 +24,7 @@
     3. From time to time open shift instance is upgraded so its highly recommended to get the latest OS client from the 
        [here](https://openshift.dsc.umich.edu:8443/console/command-line`) as some of the commands work If the openShift 
        Client version is in sync with the Openshit server version. 
-    4. log into the CLI using the same session token from [here](https://openshift.dsc.umich.edu:8443/console/command-line)
+    4. log into the CLI using the same session token as [here](https://openshift.dsc.umich.edu:8443/console/command-line)
     5. select project as `oc project oc simulator-dev`
 2. ###### secrets
     the app needs property file and a directory containing json files these are made as secrets so one can have a option to change
@@ -34,7 +34,7 @@
             2. `oc create secret generic events --from-file=events/`
        2. deleting
             1. First, take a look at the existing secrets `oc get secrets` 
-            2. Actually deleting them as `oc secret <secret-name>`
+            2. Actually deleting them as `oc delete secret <secret-name>`
 3. First step is build in the OpenShift, Goto build [page](https://openshift.dsc.umich.edu:8443/console/project/simulator-dev/browse/builds/simulator) start the build by clicking 'StartBuild' 
     do it from command line as `oc start-build simulator -n simulator-dev --follow`
 4. To run the build download the file `pod-batch.yaml`(name can be anything) from the GitHub Repo and run it as
