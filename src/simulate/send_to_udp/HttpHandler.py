@@ -10,17 +10,20 @@ class HttpHandler:
     def make_api_call(self, data):
         response = None
         try:
-            http = self.config_data[utils.PROPS_ENDPOINT]
+            endpoint = self.config_data[utils.PROPS_ENDPOINT]
         except KeyError:
             logging.error('configuration yaml is missing the\"' + utils.PROPS_ENDPOINT + '\"key')
             return
-        if http is None or http['url'] is None:
-            logging.error('End Point URL information not available to the configuration yml file')
+        if endpoint is None or endpoint['url'] is None or endpoint['token'] is None:
+            logging.error('End Point information not available to the configuration yml file')
             return
-        url = http[utils.PROPS_URL]
+        url = endpoint[utils.PROPS_URL]
+        token = endpoint[utils.PROPS_TOKEN]
         mime_type_json = 'application/json'
         content_type = 'Content-type'
-        headers = {content_type: mime_type_json}
+        authorization = 'Authorization'
+        bearer = 'Bearer '+token
+        headers = {content_type: mime_type_json,authorization:bearer}
         try:
             response = requests.post(url, json=data, headers=headers)
         except (requests.exceptions.RequestException, Exception) as e:
@@ -30,5 +33,9 @@ class HttpHandler:
         if response.status_code != requests.codes.ok:
             logging.error('sending data to endpoint failed with status code %s due to %s ', response.status_code,
                           response.text)
+        logging.info('text: '+response.text)
+        logging.info('binary content: '+str(response.content))
+        logging.info('Json reposne '+str(response.json()))
+        logging.info('Raw response '+str(response.raw))
         logging.debug('Success in sending the event to Endpoint')
         return response

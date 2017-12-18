@@ -21,6 +21,7 @@ PROPS_COURSES = 'courses'
 PROPS_USERS = 'users'
 PROPS_ENDPOINT = 'endpoint'
 PROPS_URL = 'url'
+PROPS_TOKEN = 'token'
 PROPS_PLAYER_NAME = 'player_name'
 OPEN_SHIFT_ENV_LOGGING_LEVEL = 'LOGGING_LEVEL'
 
