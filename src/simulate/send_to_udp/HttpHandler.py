@@ -1,11 +1,13 @@
 import logging
 import requests
 import utils
+import time
 
 
 class HttpHandler:
-    def __init__(self, config_data):
+    def __init__(self, config_data, session):
         self.config_data = config_data
+        self.session = session
 
     def make_api_call(self, data):
         response = None
@@ -25,17 +27,11 @@ class HttpHandler:
         bearer = 'Bearer '+token
         headers = {content_type: mime_type_json,authorization:bearer}
         try:
-            response = requests.post(url, json=data, headers=headers)
+            start = time.time()
+            response = self.session.post(url, json=data, headers=headers)
+            end = time.time()
         except (requests.exceptions.RequestException, Exception) as e:
             logging.error('Connection to endpoint failed %s\n' % e)
-            return response
-
-        if response.status_code != requests.codes.ok:
-            logging.error('sending data to endpoint failed with status code %s due to %s ', response.status_code,
-                          response.text)
-        logging.info('text: '+response.text)
-        logging.info('binary content: '+str(response.content))
-        logging.info('Json reposne '+str(response.json()))
-        logging.info('Raw response '+str(response.raw))
-        logging.debug('Success in sending the event to Endpoint')
+            end = time.time()
+        logging.info('it took about {} sec to get response from UDP' .format((end-start)))
         return response
