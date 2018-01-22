@@ -14,7 +14,7 @@ class HttpHandler:
         try:
             endpoint = self.config_data[utils.PROPS_ENDPOINT]
         except KeyError:
-            logging.error('configuration yaml is missing the\"' + utils.PROPS_ENDPOINT + '\"key')
+            logging.error('configuration yaml is missing the \"' + utils.PROPS_ENDPOINT + '\" key')
             return
         if endpoint is None or endpoint['url'] is None or endpoint['token'] is None:
             logging.error('End Point information not available to the configuration yml file')
@@ -29,9 +29,8 @@ class HttpHandler:
         try:
             start = time.time()
             response = self.session.post(url, json=data, headers=headers)
-            end = time.time()
         except (requests.exceptions.RequestException, Exception) as e:
             logging.error('Connection to endpoint failed %s\n' % e)
-            end = time.time()
-        logging.info('it took about {} sec to get response from UDP' .format((end-start)))
+        end = time.time()
+        logging.info('it took about {} sec to get response from UDP' .format(round(end-start,3)))
         return response
