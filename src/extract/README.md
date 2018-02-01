@@ -36,7 +36,7 @@ service to make it appear to be available locally.
     1. Since this script occupies a terminal, it's best to run the
         following commands in another terminal.
         
-## Set the LRS' DB address in the environment _(optional)_ 
+## Set the LRS' DB address in the environment _(optional, recommended)_ 
 
 The `extract` program can be given the address of the LRS' DB using
 a command line option.  However, it may be more convenient to set
@@ -59,7 +59,7 @@ a batch process.
 ## Run the `extract` program
 
 After the options above have been chosen, if any, `extract` should be 
-ready to run.  The program accepts two command line options:
+ready to run.  The program accepts three command line options:
 
 * **`--db` _`MONGODB_ADDRESS`_**
 
@@ -70,8 +70,8 @@ ready to run.  The program accepts two command line options:
 
 * **`--num` _`NUM_EVENTS`_**
 
-    Maximum limit of the number of the most recent events to extract.  Specify a
-    limit of 0 to get all events (**_use with caution!_**).
+    Maximum limit of the number of the most recent events to extract.
+    Specify a limit of 0 to get all events (**_use with caution!_**).
     Default: 1
 
 * **`--regex` _`REGEX`_**
@@ -124,13 +124,14 @@ $ ./extract --regex 'problemroulette'
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:a438f8ac-1da3-4d48-8c86-94a1b387e0f6","type":"SessionEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"LoggedOut","object":{"id":"https://example.edu","type":"SoftwareApplication","version":"v2"},"eventTime":"2016-11-15T11:05:00.000Z","edApp":"https://problemroulette.example.edu","session":{"id":"https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","user":"https://example.edu/users/554433","dateCreated":"2016-11-15T10:00:00.000Z","startedAtTime":"2016-11-15T10:00:00.000Z","endedAtTime":"2016-11-15T11:05:00.000Z","duration":"PT3000S"}}
 ```
 
-In this example, `extract` returns only one Caliper event, since that is the default number
-of events.
+In this example, `extract` returns only one Caliper event, since that is the
+default number of events.
 
 The `--regex` option is used to specify the regular expression `'problemroulette'`
 should be used to get only events whose `raw` attribute matches that expression.
 
-While `extract` runs, log information about the SSH tunnel may appear in the first terminal.
+While `extract` runs, log information about the SSH tunnel may appear in the
+first terminal.
 
 ### Example 2
 Again in the second terminal, run `extract` again with other options and output
@@ -146,7 +147,8 @@ $ cat events.jsonl
 {"@context":"http://purl.imsglobal.org/ctx/caliper/v1p1","id":"urn:uuid:fcd495d0-3740-4298-9bec-1154571dc211","type":"SessionEvent","actor":{"id":"https://example.edu/users/554433","type":"Person"},"action":"LoggedIn","object":{"id":"https://example.edu","type":"SoftwareApplication","version":"v2"},"eventTime":"2016-11-15T10:15:00.000Z","edApp":"https://problemroulette.example.edu","session":{"id":"https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259","type":"Session","user":"https://example.edu/users/554433","dateCreated":"2016-11-15T10:00:00.000Z","startedAtTime":"2016-11-15T10:00:00.000Z"}}
 ```
 
-In this example, the `--num` option was used to specify that the five most recent events should
-be returned.  They were redirected to a file to show the use of the `.jsonl` filename
-extension.  Examination of the file with `cat` shows that each line contains only one JSON
-object, with only a line break between them.
+In this example, the `--num` option was used to specify that the five most
+recent events should be returned.  They were redirected to a file to show
+the use of the `.jsonl` filename extension.  Examination of the file with
+`cat` shows that each line contains only one JSON object, with only a line
+break between them.
