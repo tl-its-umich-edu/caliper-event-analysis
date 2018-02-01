@@ -1,5 +1,12 @@
 # caliper-event-analysis: Extract Events From the LRS' DB
 
+## Prerequisites
+
+The `extract` program requires a local installation of the MongoDB command 
+line tool, `mongo`.  The tool can be installed various ways.  The recommended
+method on macOS computers is to use [Homebrew](https://brew.sh/) to install it
+with the command `brew install mongo`.
+
 ## Open an SSH tunnel to the LRS' DB _(optional)_ 
 
 If the LRS' MongoDB service is on a protected network (e.g., behind a 
