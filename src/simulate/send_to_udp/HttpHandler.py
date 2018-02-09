@@ -1,34 +1,36 @@
 import logging
 import requests
 import utils
+import time
 
 
 class HttpHandler:
-    def __init__(self, config_data):
+    def __init__(self, config_data, session):
         self.config_data = config_data
+        self.session = session
 
     def make_api_call(self, data):
         response = None
         try:
-            http = self.config_data[utils.PROPS_ENDPOINT]
+            endpoint = self.config_data[utils.PROPS_ENDPOINT]
         except KeyError:
-            logging.error('configuration yaml is missing the\"' + utils.PROPS_ENDPOINT + '\"key')
+            logging.error('configuration yaml is missing the \"' + utils.PROPS_ENDPOINT + '\" key')
             return
-        if http is None or http['url'] is None:
-            logging.error('End Point URL information not available to the configuration yml file')
+        if endpoint is None or endpoint['url'] is None or endpoint['token'] is None:
+            logging.error('End Point information not available to the configuration yml file')
             return
-        url = http[utils.PROPS_URL]
+        url = endpoint[utils.PROPS_URL]
+        token = endpoint[utils.PROPS_TOKEN]
         mime_type_json = 'application/json'
         content_type = 'Content-type'
-        headers = {content_type: mime_type_json}
+        authorization = 'Authorization'
+        bearer = 'Bearer '+token
+        headers = {content_type: mime_type_json,authorization:bearer}
         try:
-            response = requests.post(url, json=data, headers=headers)
+            start = time.time()
+            response = self.session.post(url, json=data, headers=headers)
         except (requests.exceptions.RequestException, Exception) as e:
             logging.error('Connection to endpoint failed %s\n' % e)
-            return response
-
-        if response.status_code != requests.codes.ok:
-            logging.error('sending data to endpoint failed with status code %s due to %s ', response.status_code,
-                          response.text)
-        logging.debug('Success in sending the event to Endpoint')
+        end = time.time()
+        logging.info('it took about {} sec to get response from UDP' .format(round(end-start,3)))
         return response

@@ -9,6 +9,7 @@ from random import randint
 from os import environ
 
 
+
 PROPS_USER_ID = 'id'
 PROPS_USER_SIS_ID = 'user_sis_id'
 PROPS_USER_CANVAS_ID = 'user_canvas_id'
@@ -21,8 +22,10 @@ PROPS_COURSES = 'courses'
 PROPS_USERS = 'users'
 PROPS_ENDPOINT = 'endpoint'
 PROPS_URL = 'url'
+PROPS_TOKEN = 'token'
 PROPS_PLAYER_NAME = 'player_name'
 OPEN_SHIFT_ENV_LOGGING_LEVEL = 'LOGGING_LEVEL'
+OPEN_SHIFT_ENV_LAG_SEND_TIME = 'LAG_SEND_TIME'
 
 
 def setup_logging(path='config/logging.yml',
@@ -89,3 +92,13 @@ def random_number_with_n_digits(n):
 # this will generate a floating point number between the range [0,n]
 def get_random_floating_point_number(n):
     return '{:04.3f}'.format(random.uniform(0, n))
+
+def add_milli_sec_delay():
+    delay_from_env = environ.get(OPEN_SHIFT_ENV_LAG_SEND_TIME)
+    if delay_from_env is None:
+        logging.info('LAG_SEND_TIME environmental variable is not set, delay is not introduced when sending events to UDP')
+        return 0
+    delay = int(delay_from_env) / 1000
+    logging.info('adding a delay of {} sec '.format(delay))
+    return delay
+
