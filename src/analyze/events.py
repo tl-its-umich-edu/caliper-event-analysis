@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# # Visualizing Caliper Events in Python<br />With `pandas` and `numpy`
+# # Visualizing Caliper Events:<br />An Example Using Python With `pandas` and `numpy`
 # > 💡This notebook requires a few Python modules in addition to the common ones.  See the ["Prerequisites" section](#Prerequisites) at the end of this notebook for more information, especially if you see error messages or the notebook doesn't run correctly.
 # 
 # ## Introduction
@@ -17,7 +17,7 @@
 # In[1]:
 
 
-# Path to input data file.
+# Path to input data file.  Files that have been compressed with gzip are supported.
 path = '../../tmp/pr.jsonl'
 
 # Is the input JSONL (JSON Lines)? (If False, input will be treated as plain JSON)
@@ -38,32 +38,15 @@ pdfFilename = 'events.pdf'
 # In[2]:
 
 
-import numpy as np
-import gzip
-from datetime import datetime
-import matplotlib.dates as mdates
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
-import pandas as pd
-
-if (jsonlInput):
-    import ndjson as json
-else:
-    import json
+from eventsTools import *
 
 
-# ## Load the JSON Input Data File
-# This automatically supports files that have been compressed with `gzip`.
+# ## Load the JSON Data Input File
 
 # In[3]:
 
 
-try:
-    with gzip.open(path, 'rt') as gid:
-        all_recs = json.load(gid)
-except OSError:
-    with open(path, 'r') as gid:
-        all_recs = json.load(gid)
+all_recs = loadEventJson(path, jsonlInput)
 
 print('Loaded {} records.'.format(len(all_recs)))
 
@@ -73,9 +56,6 @@ print('Loaded {} records.'.format(len(all_recs)))
 # In[4]:
 
 
-# Format of ISO 8601 timestamps (for datetime.strptime)
-iso8601TimestampFormat = '%Y-%m-%dT%H:%M:%S.%fZ'
-
 # Extract some fields for each event; agg is a map from course names
 # to event time stamps, the event times are split into columns
 # according to the time.struct_time fields:
@@ -84,27 +64,19 @@ agg = []
 tfields = ['tm_hour', 'tm_mday', 'tm_min', 'tm_mon', 'tm_wday', 'tm_yday', 'tm_year']
 
 for js in all_recs:
-    # Extract the user id, but not currently used here
-    if 'actor' not in js or js['actor'] is None:
-        continue
-    actor = js['actor']
-    user_url = actor['@id']
-    user = user_url.split(':')
-    if len(user) < 3:
+    user = extractEventActorUserId(js)
+    if (user is False) or (len(user) < 3):
         continue
 
-    # Extract the course name
-    if 'group' not in js or js['group'] is None:
+    course = extractEventCourseName(js)
+    if course is False:
         continue
-    course = js['group']['name']
     
-    # Extract the time
-    etime = js['eventTime']
-    etime = datetime.strptime(etime, iso8601TimestampFormat)
-    etime = etime.timetuple()
-    etime = [getattr(etime, x) for x in tfields]
-    etime.append(course)
-    agg.append(etime)
+    etime = extractEventTime(js, tfields)
+
+    eventData = etime    
+    eventData.append(course)
+    agg.append(eventData)
 
 agg = pd.DataFrame(agg)
 agg.columns = tfields + ['course']
@@ -119,53 +91,12 @@ if (pdfOutput):
     pdf = PdfPages(pdfFilename)
 else:
     get_ipython().run_line_magic('matplotlib', 'inline')
-    get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'svg'")
-        
-xlabels = {'tm_wday': 'Day of week', 'tm_yday': 'Date', 'tm_hour': 'Hour'}
-
-for course, mat in agg.groupby('course'):
-
-    # Three types of plots: by day, by weekday, and by hour
-    for col in 'tm_yday', 'tm_wday', 'tm_hour':
-
-        vc = mat[col].value_counts().sort_index()
-
-        if col == 'tm_yday':
-            d = [datetime.fromordinal(x) for x in vc.index]
-        else:
-            d = vc.index.tolist()
-
-        ax = plt.axes()
-
-        if col == 'tm_wday':
-            ax.xaxis.set_ticks([0, 1, 2, 3, 4, 5, 6])
-            ax.xaxis.set_ticklabels(['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'])
-            ax.set_xlim(-0.2, 6.2)
-        elif col == 'tm_yday':
-            months = mdates.MonthLocator()
-            days = mdates.DayLocator(bymonthday=[1, 7, 14, 21, 28])
-            months_fmt = mdates.DateFormatter('%b')
-            ax.xaxis.set_major_locator(months)
-            ax.xaxis.set_minor_locator(days)
-            ax.xaxis.set_major_formatter(months_fmt)
-        elif col == 'tm_hour':
-            ax.xaxis.set_ticks(range(0, 24, 3))
-
-        ax.set_title(course)
-        ax.grid(True)
-        ax.set_xlabel(xlabels[col])
-
-        ax.plot(d, vc.values, '-', color='grey')
-        ax.plot(d, vc.values, 'o', color='orange', alpha=0.8)
-
-        ax.set_ylabel('Records', size=15)
-        
-        if (pdfOutput):
-            pdf.savefig()
-        else:
-            plt.show()
-            
-        plt.clf()
+    get_ipython().run_line_magic('config', 'InlineBackend.figure_format = FIGURE_FORMAT_SVG')
+    
+for course, mat in agg.groupby('course'):    
+    visualizeByDate(course, mat, pdfOutput)
+    visualizeByWeekday(course, mat, pdfOutput)
+    visualizeByHour(course, mat, pdfOutput)
 
 if (pdfOutput):        
     result = pdf.close()
