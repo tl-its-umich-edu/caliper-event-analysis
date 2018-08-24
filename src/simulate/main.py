@@ -68,6 +68,8 @@ def main():
     logging.info('list of json files in the directory %s', files)
     event_count = 0
     delay_in_ms = utils.add_milli_sec_delay()
+    os.environ["TZ"]="US/Eastern"
+    time.tzset()
     start = time.time()
     for i in range(run_count):
         for file in filter(lambda file: file.endswith(".json"), files):
@@ -88,7 +90,9 @@ def main():
         # only print every tenth event
         if divmod(event_count, 10)[1] == 0:
             logging.info('so far {} events are sent '.format(event_count))
-    elapsed = time.time() - start
+    end=time.time()
+    elapsed = end - start
+    logging.info('StartTime: ({}) and EndTime: ({})'.format(time.strftime("%D %T %Z", time.localtime(start)), time.strftime("%D %T %Z", time.localtime(end))))
     logging.info('Total {} events sent to UDP in {} and successful run will send {} events'.format(event_count,
                                                                                                    timedelta(
                                                                                                        seconds=elapsed)
@@ -119,7 +123,7 @@ def send_to_udp(config_yml_obj, json_event_transformed, session, count):
                       response.text)
         return count
     # we increment the count on successful response
-    count += 1;
+    count += 1
     logging.debug('Success in sending the event to Endpoint' + response.text)
     return count
 
