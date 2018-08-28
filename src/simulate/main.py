@@ -88,8 +88,8 @@ def main():
             event_count = send_to_udp(config_yml_obj, json_event_transformed, session, event_count)
         logging.info('running count %s ', i + 1)
         # only print every tenth event
-        if divmod(event_count, 10)[1] == 0:
-            logging.info('so far {} events are sent '.format(event_count))
+        # if divmod(event_count, 10)[1] == 0:
+        logging.info('so far {} events are sent '.format(event_count))
     end=time.time()
     elapsed = end - start
     logging.info('StartTime: ({}) and EndTime: ({})'.format(time.strftime("%D %T %Z", time.localtime(start)), time.strftime("%D %T %Z", time.localtime(end))))
