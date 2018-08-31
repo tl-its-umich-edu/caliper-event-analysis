@@ -10,6 +10,7 @@ class Transformer:
     def __init__(self, eventData, config_data):
         self.eventData = eventData
         self.envelope = eventData
+        # self.event = eventData
         self.event = self.eventData['data'][0]
         self.config_data = config_data
 
@@ -35,7 +36,7 @@ class Transformer:
         fed_msg_params = fed_session['messageParameters']
         fed_session['user'] = user_id
         fed_msg_params['custom_canvas_user_id'] = user_canvas_id
-        fed_msg_params['lis_person_sourcedid'] = user_sis_id
+        fed_msg_params['lis_person_sourcedid'] = str(user_sis_id)
         return user
 
     def change_course_info(self, user):
@@ -79,7 +80,7 @@ class Transformer:
         fed_session = self.event['federatedSession']
         fed_msg_params = fed_session['messageParameters']
         fed_msg_params['custom_canvas_course_id'] = a_course_info[utils.PROPS_COURSE_CANVAS_ID]
-        fed_msg_params['lis_course_offering_sourcedid'] = a_course_info[utils.PROPS_COURSE_SIS_ID]
+        fed_msg_params['lis_course_offering_sourcedid'] = str(a_course_info[utils.PROPS_COURSE_SIS_ID])
         fed_session['id'] = 'urn:instructure:canvas:umich:session:' + utils.get_random_alpha_numeric_string(38)
 
     def change_session_info(self):
