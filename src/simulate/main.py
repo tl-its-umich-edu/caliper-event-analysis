@@ -115,16 +115,16 @@ def get_transformed_event(config_yml_obj, json_event):
 
 def send_to_udp(config_yml_obj, json_event_transformed, session, count):
     handler = HttpHandler(config_yml_obj, session)
-    response = handler.make_api_call(json_event_transformed)
-    if response is None:
-        return count
-    if response.status_code != requests.codes.ok:
-        logging.error('sending data to endpoint failed with status code %s due to %s ', response.status_code,
-                      response.text)
-        return count
+    handler.make_api_call(json_event_transformed)
+    # if response is None:
+    #     return count
+    # if response.status_code != requests.codes.ok:
+    #     logging.error('sending data to endpoint failed with status code %s due to %s ', response.status_code,
+    #                   response.text)
+    #     return count
     # we increment the count on successful response
     count += 1
-    logging.debug('Success in sending the event to Endpoint' + response.text)
+    # logging.debug('Success in sending the event to Endpoint' + response.text)
     return count
 
 
