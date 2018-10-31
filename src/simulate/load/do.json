@@ -1,0 +1,70 @@
+{
+  "sensor": "pushyami-test",
+  "sendTime": "2017-10-02T14:48:30.000Z",
+  "dataVersion": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+  "data": [
+    {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+      "id": "urn:uuid:f6568682-92f8-44b1-b1ee-acdaa6b1f7ac",
+      "type": "MediaEvent",
+      "actor": "https://mcommunity.umich.edu/#profile:ststvii",
+      "action": "Paused",
+      "object": {
+        "id": "https://leccap.engin.umich.edu/leccap/viewer/r/woNYn8",
+        "type": "VideoObject",
+        "name": "Lecture recorded on 9/19/2017",
+        "dateCreated": "2017-10-01T16:08:02.000Z",
+        "dateModified": "2017-10-01T21:28:59.000Z",
+        "duration": "PT5099.000S",
+        "isPartOf": {
+          "id": "https://leccap.engin.umich.edu/leccap/site/ziiq5uzrd9k06e6vjew",
+          "type": "WebPage",
+          "name": "EECS 370 001 / 002 / 003 / 004",
+          "dateCreated": "2017-10-01T06:41:17.000Z"
+        }
+      },
+      "target": {
+        "id": "https://leccap.engin.umich.edu/leccap/viewer/r/woNYn8#type=MediaLocation",
+        "type": "MediaLocation",
+        "currentTime": "PT4540.137S",
+        "isPartOf": "https://leccap.engin.umich.edu/leccap/viewer/r/woNYn8"
+      },
+      "eventTime": "2018-08-10T15:58:16.447Z",
+      "edApp": "https://leccap-beta.engin.umich.edu/#applicationName=Lecture+Capture",
+      "session": {
+        "id": "urn:umich:engin:leccap:session:nce9sqls42sps6sg9mkuvb8os6",
+        "type": "Session",
+        "user": "https://mcommunity.umich.edu/#profile:ststvii",
+        "startedAtTime": "2018-08-10T15:58:16.447Z"
+      },
+      "group": {
+        "id": "https://leccap.engin.umich.edu/leccap/site/ziiq5uzrd9k06e6vjew#type=CourseOffering",
+        "type": "CourseOffering",
+        "courseNumber": "BIOLOGY 172 003 / BIOLOGY 172 004",
+        "academicSession": "FA 2017"
+      },
+      "membership": {
+        "id": "https://leccap-beta.engin.umich.edu/leccap/site/i8nnmrgfvqkmcyq8wps#type=Membership&member=ststvii",
+        "member": "https://mcommunity.umich.edu/#profile:ststvii",
+        "organization": "https://leccap-beta.engin.umich.edu/leccap/site/i8nnmrgfvqkmcyq8wps#type=CourseOffering",
+        "roles": [
+          "Learner"
+        ],
+        "status": "Active",
+        "type": "Membership"
+      },
+      "federatedSession": {
+        "id": "urn:session-id-localized:leccap-beta.engin.umich.edu/lti/oauth_nonce/5a81e2eb557427.65333446",
+        "messageParameters": {
+          "custom_canvas_course_id": "211644",
+          "custom_canvas_user_id": "151503",
+          "lis_course_offering_sourcedid": "test_term_00199999003",
+          "lis_person_sourcedid": "34270233",
+          "resource_link_id": "43814f5790e0379119130a37450d6d126a70b2c1"
+        },
+        "type": "LtiSession",
+        "user": "https://mcommunity.umich.edu/#profile:ststvii"
+      }
+    }
+  ]
+}

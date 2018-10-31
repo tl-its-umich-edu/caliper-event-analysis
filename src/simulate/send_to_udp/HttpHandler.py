@@ -28,9 +28,9 @@ class HttpHandler:
         headers = {content_type: mime_type_json,authorization:bearer}
         try:
             start = time.time()
-            response = self.session.post(url, json=data, headers=headers)
+            response = self.session.post(url, json=data, headers=headers, stream=True, timeout=(3.05,0.00001))
         except (requests.exceptions.RequestException, Exception) as e:
             logging.error('Connection to endpoint failed %s\n' % e)
         end = time.time()
         logging.info('it took about {} sec to get response from UDP' .format(round(end-start,3)))
-        return response
+        # return response
