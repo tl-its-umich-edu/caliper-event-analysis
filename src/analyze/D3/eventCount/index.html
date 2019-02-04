@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Win2017 User Login</title>
+    <link rel="stylesheet" type="text/css" href="./css/dc.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+</head>
+<body>
+    <h1>Winter 2017 Problem Roulette User Login Count</h1>
+    <a class="reset" href="javascript: charts.forEach(function(c){ c.filterAll(); }); dc.redrawAll();" style="display: block; text-align: center;">reset all</a>
+
+    <div id="chart-course" class="chart-container">
+        <p>Course Number&nbsp;&nbsp;
+            <a class="reset" href="javascript: courseChart.filterAll(); dc.redrawAll();" style="display: none;">reset</a>
+        </p>
+    </div>
+
+    <div id="chart-weekday" class="chart-container">
+        <p>Day of Week&nbsp;&nbsp;
+            <a class="reset" href="javascript: weekdayChart.filterAll(); dc.redrawAll();" style="display: none;">reset</a>
+        </p>
+    </div>
+
+    <div id="chart-hour" class="chart-container">
+        <p>Hour of Day&nbsp;&nbsp;
+            <span class="filter"></span>
+            <a class="reset" href="javascript: hourChart.filterAll(); dc.redrawAll();" style="display: none;">reset</a>
+        </p>
+    </div>
+
+    <div class="chart-container">
+        <div id="chart-date">
+            <p>Date&nbsp;&nbsp;
+                <span class="filter"></span>
+                <a class="reset" href="javascript: dateChart.filterAll(); volumeChart.filterAll(); dc.redrawAll();" style="display: none;">reset</a>
+            </p>
+        </div>
+        <div id="chart-range-date"></div>
+    </div>
+
+    <script type="text/javascript" src="./js/d3.js"></script>
+    <script type="text/javascript" src="./js/crossfilter.js"></script>
+    <script type="text/javascript" src="./js/dc.js"></script>
+    <script type="text/javascript" src="./js/colorbrewer.js"></script>
+    <script type="text/javascript" src="./js/chart_script.js"></script>
+</body>
+</html>
