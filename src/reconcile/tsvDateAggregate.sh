@@ -18,7 +18,7 @@ cut -d$'\t' -f1 dates_*.tsv | sort -u | sed 's/$/\t0/' > dates_all.tsv
 wc -l dates_all.tsv
 
 # add "0" to files that are missing dates
-for i in dates_*.tsv; do
+for i in dates_[mu]*.tsv; do
     name=$(basename $i .tsv)
     join -a1 -t$'\t' -e0 -o 0,2.2 dates_all.tsv $i > ${name}_withZeroes.tsv
 done
